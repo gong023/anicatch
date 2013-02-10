@@ -14,10 +14,17 @@ class AnimesController < ApplicationController
   # GET /animes/1.json
   def show
     @anime = Anime.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render :json => @anime }
+    @initial = Movie.find_by_anime_id(params[:id])
+    if @initial
+      respond_to do |format|
+        format.html # show.html.erb
+        format.json { render :json => @anime }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to ('http://otiai10.com:3000/', :notice => '一度もｱｹﾞされてないアニメのTOPへはいけません') }
+        format.json { render :json => @anime.errors, :status => :unprocessable_entity }
+      end
     end
   end
 
@@ -44,7 +51,7 @@ class AnimesController < ApplicationController
 
     respond_to do |format|
       if @anime.save
-        format.html { redirect_to @anime, :notice => 'Anime was successfully created.' }
+        format.html { redirect_to ('http://otiai10.com:3000/') }
         format.json { render :json => @anime, :status => :created, :location => @anime }
       else
         format.html { render :action => "new" }

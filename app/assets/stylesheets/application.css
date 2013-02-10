@@ -38,6 +38,10 @@ h2#universal-title>a {
   text-decoration: none;
 }
 
+span#notice {
+  color: #f93;
+}
+
 footer {
 }
 footer h3 {
@@ -52,4 +56,6 @@ img.on-playing {
           box-shadow: 0 0 20px #000,
                       2px 2px 1px #555;
 }
-
+footer>h5 {
+  text-align: center;
+}

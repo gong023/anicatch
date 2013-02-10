@@ -2,44 +2,46 @@
 
 <p>
   <b>Title:</b>
-  <%= @anime.title %>
+  <h1 class="anime_title anime-show" render-to="<%= @anime.id %>" sequence="<%= @anime.id %>"><%= @anime.title %></h1>
 </p>
 
-<p>
+<!--p>
   <b>Day of week:</b>
   <%= @anime.day_of_week %>
-</p>
+</p-->
 
-<p>
+<!--p>
   <b>Description:</b>
   <%= @anime.description %>
-</p>
+</p-->
 
 <p>
-  <b>Point:</b>
-  <%= @anime.point %>
+  <b>スコア:</b>
+  <h1 class="anime-score">(☝ ՞ω ՞)☝<%= @anime.point %></h1>
 </p>
 
-<p>
+<!--p>
   <b>Year:</b>
   <%= @anime.year %>
-</p>
+</p-->
 
-<p>
+<!--p>
   <b>Season:</b>
   <%= @anime.season %>
-</p>
+</p-->
 
-<p>
+<!--p>
   <b>Point:</b>
   <%= @anime.point %>
-</p>
+</p-->
 
-<p>
+<!--p>
   <b>Info:</b>
   <%= @anime.info %>
-</p>
+</p-->
 
-
+<!--
 <%= link_to 'Edit', edit_anime_path(@anime) %> |
 <%= link_to 'Back', animes_path %>
+-->
+<%= render(:partial => "stream", :object => @anime) %>

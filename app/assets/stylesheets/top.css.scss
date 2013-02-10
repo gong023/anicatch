@@ -46,6 +46,9 @@ div#play-area {
       a {
         font-size: 2em;
       }
+      a.action-age:hover, a.action-age:focus {
+        background-color: orange;
+      }
     }
     div#video-controllers {
       position: relative;
@@ -75,6 +78,7 @@ div#table-area {
       td {
         img {
           width: 100px;
+          padding: 0 2px;
           @include clickable;
         }
       }

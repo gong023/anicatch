@@ -3,6 +3,7 @@
     <div id="video"></div>
   </div>
   <div id="title-container">
+    <input type="hidden" id="initial-video" video-hash="<%= @initial.idstr %>" video-title="<%= @initial.title %>">
     <h1 id="anime-title" class="mid-big">一番最近(´∀｀∩)↑age↑されたビデオ</h1>
     <h2 id="video-title" class="mid-big"></h2>
   </div>
@@ -34,3 +35,4 @@
   </table>
   <h1 class="stay-center"><%= link_to 'Add New Anime', new_anime_path %></h1>
 </div>
+

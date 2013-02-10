@@ -7,6 +7,15 @@
 $ ->
   # TODO: get video info by title by using ServerSide API in order to affect each video's score (or even existence)
 
+  ageEffect = () ->
+    $('#age-response-ux').animate({
+      "top" : "-200px"
+    }, 2000, () ->
+      $('#age-response-ux').css({
+        "top" : "150%"
+      })
+    )
+
   $('.action-age').on 'click', () ->
     url      = $(this).attr 'destination'
     anime_id = $(this).attr 'anime-id'
@@ -15,7 +24,9 @@ $ ->
     $.post url,
       'idstr'    : idstr
       'anime_id' : anime_id
-      (data) -> console.log data
+      (data) ->
+        if data.id
+          ageEffect()
 
   DEFINED_LENGTH = parseInt($('input#defined-length').attr('len'))
 

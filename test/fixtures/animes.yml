@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  day_of_week: 1
+  description: MyString
+  point: 1
+  year: 1
+  season: 1
+  point: 1
+  info: 
+
+two:
+  title: MyString
+  day_of_week: 1
+  description: MyString
+  point: 1
+  year: 1
+  season: 1
+  point: 1
+  info: 

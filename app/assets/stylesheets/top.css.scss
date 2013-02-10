@@ -1,0 +1,78 @@
+// Place all the styles related to the top controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@mixin boxy {
+  display: -webkit-box;
+  display:    -moz-box;
+  display:         box;
+}
+
+@mixin trigger {
+  width: 100px;
+}
+@mixin trigger {
+  width: 100px;
+}
+@mixin level01 {
+  font-size: 3em;
+  line-height: 1em;
+}
+
+/**/
+h1.so-big {
+  font-size: 4em;
+  line-height: 1em;
+}
+
+
+#play-area {
+}
+
+#video-container {
+  width: 420px;
+}
+
+#title-container {
+  width: 100%;
+}
+
+#anime-title {
+}
+
+#video-title {
+}
+/**/
+
+div#play-area {
+  @include boxy;
+  div {
+    width: 420px;
+  }
+  div {
+    /*width: 100%; */
+    h1 {
+      @included level02;
+    }
+    h2 {
+    }
+  }
+}
+div#table-area {
+  border: thin solid #000;
+  background-color: #ddf;
+  table {
+    tr {
+      th {
+      }
+      td {
+        img {
+          width: 100px;
+        }
+      }
+    }
+  }
+  h1.stay-center {
+    text-align: center;
+  }
+}

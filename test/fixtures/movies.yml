@@ -1,0 +1,41 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  service: 3
+  idstr: hoge-fuga 
+  title: someYoutube
+  score: 10
+  anime_id: 4
+  info: 
+
+two:
+  service: 1
+  idstr: asf/adfsa/asdfssadf
+  title: someSoundCloud
+  score: 6
+  anime_id: 5
+  info: 
+
+three:
+  service: 1
+  idstr: rvhbnKaX3p8
+  title: 「VIS-PV」 Fallin Fallin Fallin (Dixie Flatline feat. 初音ミク)
+  score: 1
+  info: 
+  anime_id: 3
+
+four:
+  service: 1
+  idstr: IIQgyJ2dm0U
+  title: 【初音ミク】帰宅のテーマ【歌詞】
+  score: 2
+  info:
+  anime_id: 2
+
+five:
+  service: 2
+  idstr: shirio/pianol
+  title: 初心者Fとmorlbon - ピアノ・レッスン (SINGALON Ver) (Club Mix)
+  score: 3
+  info: 
+  anime_id: 1

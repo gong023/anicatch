@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AnimeCatchUpper</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+  <script src="http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
+  <script src="http://otiai10.com/anicatch/js/youtubeController.js"></script>
+</head>
+<body>
+  <div class="contents">
+    <h2 id="universal-title"><a href="http://otiai10.com:3000/">OPだけ自動で聞き流して今季アニメをキャッチアップした気になれるアニソンキャッチアッパー</a></h2>
+    <%= yield %>
+  </div>
+</div>
+</body>
+</html>

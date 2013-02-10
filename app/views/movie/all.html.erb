@@ -1,0 +1,20 @@
+<h1><%= @movies.first.title %></h1>
+<table border="1">
+  <tr>
+    <th>id</th>
+    <th>idstr</th>
+    <th>title</th>
+    <th>service</th>
+    <th>score</th>
+    <th>anime_id</th>
+<% @movies.each do |movie| %>
+  <tr>
+    <td><%= movie.id %></td>
+    <td><%= movie.idstr %></td>
+    <td><%= movie.title %></td>
+    <td><%= movie.service %></td>
+    <td><%= movie.score %></td>
+    <td><%= movie.anime_id %></td>
+  </tr>
+<% end %>
+</table>

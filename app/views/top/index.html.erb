@@ -1,0 +1,36 @@
+<div id="play-area" class="boxy">
+  <div id="video-container">
+    <div id="video"></div>
+  </div>
+  <div id="title-container">
+    <h1 id="anime-title" class="mid-big">一番最近(´∀｀∩)↑age↑されたビデオ</h1>
+    <h2 id="video-title" class="mid-big"></h2>
+  </div>
+</div>
+<div id="table-area">
+  <table>
+    <tr>
+      <th>アニメタイトル</th>
+      <th>曜日</th>
+      <th>スコア</th>
+      <th>OP</th>
+      <th>ED</th>
+    </tr>
+
+    <% @animes.each do |anime| %>
+    <tr>
+      <td>
+        <p><h1 class="anime_title" data-title="<%= anime.title %>" render-to="<%= anime.id %>"><%= anime.title %></h1></p>
+        <%= link_to 'Show', anime %> | <%= link_to 'Edit', edit_anime_path(anime) %> | <%= link_to '↑age↑', edit_anime_path(anime) %>
+      </td>
+      <td><%= anime.day_of_week %></td>
+      <td><%= anime.point %></td>
+      <td>
+        <div id="_id_<%= anime.id %>" class="render-area"></div>
+      </td>
+      <!--td><%= link_to 'Destroy', anime, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td-->
+    </tr>
+    <% end %>
+  </table>
+  <h1 class="stay-center"><%= link_to 'Add New Anime', new_anime_path %></h1>
+</div>

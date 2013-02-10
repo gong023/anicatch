@@ -1,0 +1,53 @@
+<%= form_for(@anime) do |f| %>
+  <% if @anime.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@anime.errors.count, "error") %> prohibited this anime from being saved:</h2>
+
+      <ul>
+      <% @anime.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%#= f.label :title %>タイトル<br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%#= f.label :day_of_week%>曜日<br />
+    <%= f.select :day_of_week, [["月-深夜","1"],["火-深夜","2"],["水-深夜","3"],["木-深夜","4"],["金-深夜","5"],["土-深夜","6"],["日-深夜","7"]] %>
+  </div>
+<!--
+  <div class="field">
+    <%#= f.label :description %>説明<br />
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :point %><br />
+    <%= f.number_field :point %>
+  </div>
+-->
+  <div class="field">
+    <%#= f.label :year %>放送開始年<br />
+    <%= f.number_field :year , :min => 2011, :size => 3 %>
+  </div>
+<!--
+  <div class="field">
+    <%#= f.label :season %>季<br />
+    <%= f.number_field :season %>
+  </div>
+  <div class="field">
+    <%= f.label :point %><br />
+    <%= f.number_field :point %>
+  </div>
+  <div class="field">
+    <%= f.label :info %><br />
+    <%= f.text_field :info %>
+  </div>
+-->
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

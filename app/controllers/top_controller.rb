@@ -1,5 +1,6 @@
 class TopController < ApplicationController
   def index
+    @query = params[:q]
     # get initial video
     @initial = Movie.last
     #initial.idstr = '9FLTUJKdvU8'

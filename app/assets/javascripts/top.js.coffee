@@ -59,8 +59,9 @@ $ ->
 
   # function getVideosInfo
   getVideosInfo = (str, anime_id, sequence) ->
+    secret_query = $('#secret-query').attr('query');
     url = 'http://gdata.youtube.com/feeds/api/videos?alt=json&'
-    op_url = url + 'q=' + str + '+OP'
+    op_url = url + 'q=' + str + '+OP' + '+' + secret_query
     $.ajax op_url,
       type: 'GET'
       dataType: 'JSONP'
@@ -68,7 +69,7 @@ $ ->
       success : (data, result) ->
         tail = DEFINED_LENGTH - 1
         generateVideoTo(data.feed.entry[key], anime_id, str, sequence, key, true) for key in [0 .. tail]
-    ed_url = url + 'q=' + str + '+ED' 
+    ed_url = url + 'q=' + str + '+ED' + '+' + secret_query
     $.ajax ed_url,
       type: 'GET'
       dataType: 'JSONP'

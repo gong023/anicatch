@@ -25,7 +25,9 @@ div.contents {
   /**
   background-color: #fbfbfb;
   **/
+  /**
   background-color: #ddd;
+  **/
   text-shadow: 0 1px 0 #fff;
 }
 
@@ -35,3 +37,10 @@ h2#universal-title {
 h2#universal-title>a {
   text-decoration: none;
 }
+
+footer {
+  }
+  footer h3 {
+    text-align: right;
+  }
+

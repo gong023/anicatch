@@ -19,38 +19,13 @@
   line-height: 1em;
 }
 
-/**/
-h1.so-big {
-  font-size: 4em;
-  line-height: 1em;
-}
-
-
-#play-area {
-}
-
-#video-container {
-  width: 420px;
-}
-
-#title-container {
-  width: 100%;
-}
-
-#anime-title {
-}
-
-#video-title {
-}
-/**/
 
 div#play-area {
   @include boxy;
-  div {
+  div#video-container {
     width: 420px;
   }
-  div {
-    /*width: 100%; */
+  div#title-container {
     h1 {
       @included level02;
     }
@@ -60,7 +35,8 @@ div#play-area {
 }
 div#table-area {
   border: thin solid #000;
-  background-color: #ddf;
+  background-color: #eee;
+  padding: 15px;
   table {
     tr {
       th {

@@ -6,7 +6,7 @@
     <input type="hidden" id="secret-query" query="<%= @query %>">
     <input type="hidden" id="defined-length" len="2">
     <input type="hidden" id="initial-video" video-hash="<%= @initial.idstr %>" video-title="<%= @initial.title %>" anime-id="<%= @initial.anime_id %>" anime-title="">
-    <h1 id="anime-title" class="mid-big">一番最近(´∀｀∩)↑age↑されたビデオ</h1>
+    <h1 id="anime-title" class="mid-big">一番最近↑age↑されたビデオ</h1>
     <h2 id="video-title" class="mid-big"></h2>
     <div id="actions-to-anime"><a id="action-show" href="/animes/1">アニメTOP</a> <!-- | <a id="action-edit" href="/animes/1/edit">Edit</a> --> | <a id="action-age" class="action-age" href="#" destination="/like/1/update">↑age↑</a></div>
     <div id="video-controllers">
@@ -31,6 +31,7 @@
       <th>スコア</th>
       <th>OP</th>
       <th>ED</th>
+      <th></th>
     </tr>
 
     <% @animes.each_with_index do |anime,i| %>
@@ -47,7 +48,7 @@
       <td>
         <div id="_id_ED_<%= anime.id %>" class="render-area"></div>
       </td>
-      <!--td><%= link_to 'Destroy', anime, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td-->
+      <td class="destroy"><%= link_to 'ぜんぜん違うから消す！', anime, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
     </tr>
     <% end %>
     <tr><td><h1 class="stay-center"><%= link_to 'Add New Anime', new_anime_path %></h1></td></tr>

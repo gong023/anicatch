@@ -17,10 +17,11 @@ $ ->
       'anime_id' : anime_id
       (data) -> console.log data
 
-  DEFINED_LENGTH = 1;
+  DEFINED_LENGTH = parseInt($('input#defined-length').attr('len'))
 
   # function generateVideoTo
   generateVideoTo = (info, anime_id, anime_title, sequence, video_id, is_OP) ->
+    # console.log sequence, video_id
     sid = ''
     if is_OP
       dom_render_target = 'div#_id_' + anime_id
@@ -48,26 +49,22 @@ $ ->
   # function getVideosInfo
   getVideosInfo = (str, anime_id, sequence) ->
     url = 'http://gdata.youtube.com/feeds/api/videos?alt=json&'
-    op_url = url + 'q=' + str + '+op'
+    op_url = url + 'q=' + str + '+OP'
     $.ajax op_url,
       type: 'GET'
       dataType: 'JSONP'
       error: (a, b, c, d) -> console.log a b c d
       success : (data, result) ->
-        #for ( var i in data) { # each???
-        info = data.feed.entry[0]
-        generateVideoTo(info, anime_id, str, sequence, 0, true);
-        #}
-    ed_url = url + 'q=' + str + '+ed' 
+        tail = DEFINED_LENGTH - 1
+        generateVideoTo(data.feed.entry[key], anime_id, str, sequence, key, true) for key in [0 .. tail]
+    ed_url = url + 'q=' + str + '+ED' 
     $.ajax ed_url,
       type: 'GET'
       dataType: 'JSONP'
       error: (a, b, c, d) -> console.log a b c d
       success : (data, result) ->
-        #for ( var i in data) { # each???
-        info = data.feed.entry[0]
-        generateVideoTo(info, anime_id, str, sequence, 0, false);
-        #}
+        tail = DEFINED_LENGTH - 1
+        generateVideoTo(data.feed.entry[key], anime_id, str, sequence, key, false) for key in [0 .. tail]
 
   # main
   titles = $("h1.anime_title")

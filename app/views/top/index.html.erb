@@ -3,9 +3,10 @@
     <div id="video"></div>
   </div>
   <div id="title-container">
-    <input type="hidden" id="initial-video" video-hash="<%= @initial.idstr %>" video-title="<%= @initial.title %>">
+    <input type="hidden" id="initial-video" video-hash="<%= @initial.idstr %>" video-title="<%= @initial.title %>" anime-id="<%= @initial.anime_id %>" anime-title="">
     <h1 id="anime-title" class="mid-big">一番最近(´∀｀∩)↑age↑されたビデオ</h1>
     <h2 id="video-title" class="mid-big"></h2>
+    <div id="actions-to-anime"><a id="action-show" href="/animes/1">アニメTOP</a> <!-- | <a id="action-edit" href="/animes/1/edit">Edit</a> --> | <a id="action-age" href="/animes/1/edit">↑age↑</a></div>
   </div>
 </div>
 <div id="table-area">
@@ -22,7 +23,7 @@
     <tr>
       <td>
         <p><h1 class="anime_title" data-title="<%= anime.title %>" render-to="<%= anime.id %>"><%= anime.title %></h1></p>
-        <%= link_to 'Show', anime %> | <%= link_to 'Edit', edit_anime_path(anime) %> | <%= link_to '↑age↑', edit_anime_path(anime) %>
+        <%= link_to 'アニメTOP', anime %> <!-- | <%= link_to 'Edit', edit_anime_path(anime) %> --> | <%= link_to '↑age↑', edit_anime_path(anime) %>
       </td>
       <td><%= anime.day_of_week %></td>
       <td><%= anime.point %></td>
@@ -32,7 +33,7 @@
       <!--td><%= link_to 'Destroy', anime, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td-->
     </tr>
     <% end %>
+    <tr><td><h1 class="stay-center"><%= link_to 'Add New Anime', new_anime_path %></h1></td></tr>
   </table>
-  <h1 class="stay-center"><%= link_to 'Add New Anime', new_anime_path %></h1>
 </div>
 

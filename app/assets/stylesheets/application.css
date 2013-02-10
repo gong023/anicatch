@@ -39,8 +39,12 @@ h2#universal-title>a {
 }
 
 footer {
-  }
-  footer h3 {
-    text-align: right;
-  }
+}
+footer h3 {
+  text-align: right;
+}
+
+img.on-playing {
+  -webkit-box-shadow: 0 0 20px #000;
+}
 

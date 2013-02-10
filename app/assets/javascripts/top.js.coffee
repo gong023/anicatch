@@ -17,6 +17,7 @@ $ ->
     # create img
     img = document.createElement 'img'
     img.setAttribute 'id', ('uid-' + anime_id + '-' + video_id)
+    img.setAttribute 'anime-id', anime_id
     img.setAttribute 'src', video_thumbnail_url
     img.setAttribute 'class', 'trigger'
     img.setAttribute 'title', video_title

@@ -7,8 +7,18 @@
 $ ->
   # TODO: get video info by title by using ServerSide API in order to affect each video's score (or even existence)
 
+  $('.action-age').on 'click', () ->
+    url      = $(this).attr 'destination'
+    anime_id = $(this).attr 'anime-id'
+    idstr    = $(this).attr 'idstr'
+    #title    = $(this).attr 'anime-title'
+    $.post url,
+      'idstr'    : idstr
+      'anime_id' : anime_id
+      (data) -> console.log data
+
   # function generateVideoTo
-  generateVideoTo = (info, anime_id, anime_title, video_id) ->
+  generateVideoTo = (info, anime_id, anime_title, sequence, video_id) ->
     dom_render_target   = 'div#_id_' + anime_id
     video_hash          = (info.id.$t.split /\//).pop()
     video_title         = info.title.$t
@@ -16,7 +26,7 @@ $ ->
     #console.log video_hash, video_thumbnail_url, video_title, dom_render_target
     # create img
     img = document.createElement 'img'
-    img.setAttribute 'id', ('uid-' + anime_id + '-' + video_id)
+    img.setAttribute 'id', ('sid-' + sequence + '-' + video_id)
     img.setAttribute 'anime-id', anime_id
     img.setAttribute 'src', video_thumbnail_url
     img.setAttribute 'class', 'trigger'
@@ -28,7 +38,7 @@ $ ->
     $(dom_render_target).append(img)
 
   # function getVideosInfo
-  getVideosInfo = (str, anime_id) ->
+  getVideosInfo = (str, anime_id, sequence) ->
     url = 'http://gdata.youtube.com/feeds/api/videos?alt=json&'
     url += 'q=' + str + '+op'
     $.ajax url,
@@ -38,12 +48,12 @@ $ ->
       success : (data, result) ->
         #for ( var i in data) { # each???
         info = data.feed.entry[0]
-        generateVideoTo(info, anime_id, str, 0);
+        generateVideoTo(info, anime_id, str, sequence, 0);
         #}
 
   # main
   titles = $("h1.anime_title")
-  getVideosInfo(title.innerHTML, $(title).attr('render-to')) for title in titles
+  getVideosInfo(title.innerHTML, $(title).attr('render-to'), $(title).attr('sequence')) for title in titles
 
 # I should use this syntax when generating iframe
 #hash = (data.feed.entry[0].id.$t.split /\//).pop()

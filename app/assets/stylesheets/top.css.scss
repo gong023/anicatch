@@ -7,6 +7,15 @@
   display:    -moz-box;
   display:         box;
 }
+@mixin bb {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+       -o-box-sizing: border-box;
+      -ms-box-sizing: border-box;
+}
+@mixin pullright {
+  text-align: right;
+}
 
 @mixin trigger {
   width: 100px;
@@ -14,26 +23,43 @@
 @mixin trigger {
   width: 100px;
 }
-@mixin level01 {
-  font-size: 3em;
-  line-height: 1em;
+@mixin clickable {
+  cursor: pointer;
 }
 
 
 div#play-area {
   @include boxy;
+  width:100%;
   div#video-container {
     width: 420px;
   }
   div#title-container {
-    h1 {
-      @included level02;
+    @include bb;
+    padding: 10px;
+    h1#anime-title {
+      margin-top: 0;
     }
-    h2 {
+    h2#video-title {
     }
     div#actions-to-anime {
       a {
         font-size: 2em;
+      }
+    }
+    div#video-controllers {
+      position: relative;
+      bottom: 0;
+      @include boxy;
+      @include bb;
+      div {
+        padding: 10px;
+        a {
+          img {
+            @include clickable;
+            height: 25px;
+          }
+        }
       }
     }
   }
@@ -49,6 +75,7 @@ div#table-area {
       td {
         img {
           width: 100px;
+          @include clickable;
         }
       }
     }

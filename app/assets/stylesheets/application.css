@@ -45,6 +45,11 @@ footer h3 {
 }
 
 img.on-playing {
-  -webkit-box-shadow: 0 0 20px #000;
+  -webkit-box-shadow: 0 0 20px #000,
+                      2px 2px 1px #555;
+     -moz-box-shadow: 0 0 20px #000,
+                      2px 2px 1px #555;
+          box-shadow: 0 0 20px #000,
+                      2px 2px 1px #555;
 }
 

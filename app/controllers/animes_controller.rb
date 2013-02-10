@@ -14,7 +14,7 @@ class AnimesController < ApplicationController
   # GET /animes/1.json
   def show
     @anime = Anime.find(params[:id])
-
+    @initial = Movie.find_by_anime_id(params[:id])
     respond_to do |format|
       format.html # show.html.erb
       format.json { render :json => @anime }

@@ -55,6 +55,7 @@ $ ->
     img.setAttribute 'video-hash', video_hash
     img.addEventListener 'click', (e)=>
       playThis img
+    #console.log img
     $(dom_render_target).append(img)
 
   # function getVideosInfo

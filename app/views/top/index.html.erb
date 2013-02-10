@@ -6,7 +6,7 @@
     <input type="hidden" id="initial-video" video-hash="<%= @initial.idstr %>" video-title="<%= @initial.title %>" anime-id="<%= @initial.anime_id %>" anime-title="">
     <h1 id="anime-title" class="mid-big">一番最近(´∀｀∩)↑age↑されたビデオ</h1>
     <h2 id="video-title" class="mid-big"></h2>
-    <div id="actions-to-anime"><a id="action-show" href="/animes/1">アニメTOP</a> <!-- | <a id="action-edit" href="/animes/1/edit">Edit</a> --> | <a id="action-age" href="/animes/1/edit">↑age↑</a></div>
+    <div id="actions-to-anime"><a id="action-show" href="/animes/1">アニメTOP</a> <!-- | <a id="action-edit" href="/animes/1/edit">Edit</a> --> | <a id="action-age" class="action-age" href="#" destination="/like/1/update">↑age↑</a></div>
     <div id="video-controllers">
       <!-- div>
         <a href="#" id="play-prev"><img src="http://otiai10.com/public/src/icon/png/glyphicons_170_step_backward.png"></a>
@@ -25,19 +25,19 @@
   <table>
     <tr>
       <th>アニメタイトル</th>
-      <th>曜日</th>
+      <!-- th>曜日</th -->
       <th>スコア</th>
       <th>OP</th>
       <th>ED</th>
     </tr>
 
-    <% @animes.each do |anime| %>
+    <% @animes.each_with_index do |anime,i| %>
     <tr>
       <td>
-        <p><h1 class="anime_title" data-title="<%= anime.title %>" render-to="<%= anime.id %>"><%= anime.title %></h1></p>
-        <%= link_to 'アニメTOP', anime %> <!-- | <%= link_to 'Edit', edit_anime_path(anime) %> --> | <%= link_to '↑age↑', edit_anime_path(anime) %>
+        <p><h1 class="anime_title" data-title="<%= anime.title %>" render-to="<%= anime.id %>" sequence="<%= i + 1 %>"><%= anime.title %></h1></p>
+        <%= link_to 'アニメTOP', anime %> <!-- | <%= link_to 'Edit', edit_anime_path(anime) %> | <a class="action-age" href="#" destination="/like/add/<%= anime.id %>">↑age↑</a> -->
       </td>
-      <td><%= anime.day_of_week %></td>
+      <!-- td><%= anime.day_of_week %></td -->
       <td><%= anime.point %></td>
       <td>
         <div id="_id_<%= anime.id %>" class="render-area"></div>

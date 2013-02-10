@@ -1,11 +1,11 @@
 class TopController < ApplicationController
   def index
     # get initial video
-    @initial = Movie.first
+    @initial = Movie.last
     #initial.idstr = '9FLTUJKdvU8'
     #initial.title = 'Kotoura-san Opening'
     # get anime list
-    @animes = Anime.all
+    @animes = Anime.find(:all, :order => "point DESC")
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json => @animes }

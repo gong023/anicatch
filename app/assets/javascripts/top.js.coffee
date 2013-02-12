@@ -10,7 +10,7 @@ $ ->
   ageEffect = () ->
     $('#age-response-ux').animate({
       "top" : "-200px"
-    }, 2000, () ->
+    }, 1500, () ->
       $('#age-response-ux').css({
         "top" : "150%"
       })

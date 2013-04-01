@@ -10,6 +10,10 @@
  * @link       http://fuelphp.com
  */
 
+// TODO: use model
+//use Model\Anime;
+//use Model\Sampletable;
+
 /**
  * The Welcome Controller.
  *
@@ -30,6 +34,11 @@ class Controller_Welcome extends Controller
 	 */
 	public function action_index()
 	{
+    // TODO: use model
+    //$query=DB::select()->from(‘animes’)->execute();
+    //$res = Model_Sampletable::find_all();
+    $res = DB::query('SELECT * FROM animes')->execute();
+    //_var_dump($res);
 		return Response::forge(View::forge('welcome/index'));
 	}
 

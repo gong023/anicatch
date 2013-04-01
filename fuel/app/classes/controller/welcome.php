@@ -37,9 +37,11 @@ class Controller_Welcome extends Controller
     // TODO: use model
     //$query=DB::select()->from(‘animes’)->execute();
     //$res = Model_Sampletable::find_all();
-    $res = DB::query('SELECT * FROM animes')->execute();
+    $rows = DB::query('SELECT * FROM animes')->execute()->as_array();
     //_var_dump($res);
-		return Response::forge(View::forge('welcome/index'));
+    $view = ViewModel::forge('welcome/index');
+    $view->set('list', $rows);
+		return Response::forge($view);
 	}
 
 	/**

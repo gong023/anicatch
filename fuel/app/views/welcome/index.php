@@ -17,13 +17,14 @@
 	</div>
 	<div class="container">
 		<div class="hero-unit">
-			<h1>今期アニメ、</h1><h1>ちゃんと見てる？</h1>
+			<h1><?php echo $test; ?>今期アニメ、</h1><h1>ちゃんと見てる？</h1>
 			<p><!-- 忙しくて見てないひとも、<br>オープニングとエンディングテーマだけでも聞いて、ライバルに差を付けろ！！ --></p>
 			<p><a class="btn btn-primary btn-large" href="http://docs.fuelphp.com">見れてない(´・ω・`)</a></p>
 		</div>
 		<div class="row">
 			<div class="span4">
 				<h2>Get Started</h2>
+        <p><?php foreach($list as $k => $v){ echo $v['title'] . "<br>"; } ?></p>
 				<p>The controller generating this page is found at <code>APPPATH/classes/controller/welcome.php</code>.</p>
 				<p>This view can be found at <code>APPPATH/views/welcome/index.php</code>.</p>
 				<p>You can modify these files to get your application started quickly.</p>

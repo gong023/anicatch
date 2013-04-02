@@ -19,6 +19,28 @@ function init(){
   initPlaylist(__playlist);
   initPlayer(__playlist[__index]['hash']);
   displayInfo();
+  registControleButtons();
+}
+
+function registControleButtons(){
+
+  var prevBtns = document.getElementsByClassName('play-prev');
+  for(var i=0; i<prevBtns.length; i++){
+    prevBtns[i].addEventListener('click', playPrev);
+  }
+  var nextBtns = document.getElementsByClassName('play-next');
+  for(var i=0; i<nextBtns.length; i++){
+    nextBtns[i].addEventListener("click", playNext);
+  }
+
+  var directBtns = document.getElementsByClassName('play-direct');
+  for(var i=0; i<directBtns.length; i++){
+    directBtns[i].addEventListener("click", function(){
+      var seq = this.getAttribute('seq');
+      playDirect(seq);
+    });
+  }
+
 }
 
 function initPlaylist(__playlist, is_sub){
@@ -84,7 +106,9 @@ function stateDispatcher(state){
 }
 
 function errorHandler(){
-  playNext();
+  setTimeout(function(){
+    playNext();
+  },800);
 }
 
 function displayInfo(){
@@ -132,7 +156,22 @@ function playNext(){
 }
 
 function playPrev(){
+  var is_first = false;
+  if(__index < 1){
+    is_first = true;
+  }
+  if(is_first){
+    __index = (__playlist.length - 1);
+  }else{
+    __index = __index - 1;
+  }
+  _playThis();
+}
 
+function playDirect(seq){
+  console.log(seq);
+  __index = parseInt(seq);
+  _playThis();  
 }
 
 function switchPause(){

@@ -10,9 +10,10 @@
  * @link       http://fuelphp.com
  */
 
-// TODO: use model
-//use Model\Anime;
-//use Model\Sampletable;
+/** TODO: use model
+use Model\Anime;
+use Model\Sampletable;
+**/
 
 /**
  * The Top Controller.
@@ -34,13 +35,19 @@ class Controller_Top extends Controller
 	 */
 	public function action_index()
 	{
-    // TODO: use model
-    //$query=DB::select()->from(‘animes’)->execute();
-    //$res = Model_Sampletable::find_all();
-    $rows = DB::query('SELECT * FROM animes ORDER BY id')->execute()->as_array();
-    //_var_dump($res);
+    // TODO: use model : $query=DB::select()->from(‘animes’)->execute();
+    $limit = 20;
+    $query0 = 'SELECT * FROM animes ORDER BY unlikes DESC, created_at, likes LIMIT 0, '.$limit;
+    $query1 = 'SELECT * FROM animes ORDER BY unlikes DESC, created_at, likes LIMIT ' . ($limit*1) . ',' . $limit;
+    $query2 = 'SELECT * FROM animes ORDER BY unlikes DESC, created_at, likes LIMIT ' . ($limit*2) . ',' . $limit;
+    $list0 = DB::query($query0)->execute()->as_array();
+    $list1 = DB::query($query1)->execute()->as_array();
+    $list2 = DB::query($query2)->execute()->as_array();
+
     $view = ViewModel::forge('top/index');
-    $view->set('list', $rows);
+    $view->set('list0', $list0);
+    $view->set('list1', $list1);
+    $view->set('list2', $list2);
 		return Response::forge($view);
 	}
 

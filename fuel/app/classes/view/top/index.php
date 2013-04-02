@@ -11,12 +11,12 @@
  */
 
 /**
- * The welcome 404 view model.
+ * The welcome index view model.
  *
  * @package  app
  * @extends  ViewModel
  */
-class View_Welcome_404 extends ViewModel
+class View_Top_Index extends ViewModel
 {
 	/**
 	 * Prepare the view data, keeping this in here helps clean up
@@ -26,7 +26,6 @@ class View_Welcome_404 extends ViewModel
 	 */
 	public function view()
 	{
-		$messages = array('Aw, crap!', 'Bloody Hell!', 'Uh Oh!', 'Nope, not here.', 'Huh?');
-		$this->title = $messages[array_rand($messages)];
+		$this->test = $this->request()->param('test', 'hoge');
 	}
 }

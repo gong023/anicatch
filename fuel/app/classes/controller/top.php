@@ -15,7 +15,7 @@
 //use Model\Sampletable;
 
 /**
- * The Welcome Controller.
+ * The Top Controller.
  *
  * A basic controller example.  Has examples of how to set the
  * response body and status.
@@ -23,7 +23,7 @@
  * @package  app
  * @extends  Controller
  */
-class Controller_Welcome extends Controller
+class Controller_Top extends Controller
 {
 
 	/**
@@ -37,9 +37,9 @@ class Controller_Welcome extends Controller
     // TODO: use model
     //$query=DB::select()->from(‘animes’)->execute();
     //$res = Model_Sampletable::find_all();
-    $rows = DB::query('SELECT * FROM animes')->execute()->as_array();
+    $rows = DB::query('SELECT * FROM animes ORDER BY id')->execute()->as_array();
     //_var_dump($res);
-    $view = ViewModel::forge('welcome/index');
+    $view = ViewModel::forge('top/index');
     $view->set('list', $rows);
 		return Response::forge($view);
 	}
@@ -53,7 +53,7 @@ class Controller_Welcome extends Controller
 	 */
 	public function action_hello()
 	{
-		return Response::forge(ViewModel::forge('welcome/hello'));
+		return Response::forge(ViewModel::forge('top/hello'));
 	}
 
 	/**
@@ -64,6 +64,6 @@ class Controller_Welcome extends Controller
 	 */
 	public function action_404()
 	{
-		return Response::forge(ViewModel::forge('welcome/404'), 404);
+		return Response::forge(ViewModel::forge('top/404'), 404);
 	}
 }

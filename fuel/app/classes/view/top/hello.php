@@ -11,12 +11,12 @@
  */
 
 /**
- * The welcome index view model.
+ * The welcome hello view model.
  *
  * @package  app
  * @extends  ViewModel
  */
-class View_Welcome_Index extends ViewModel
+class View_Top_Hello extends ViewModel
 {
 	/**
 	 * Prepare the view data, keeping this in here helps clean up
@@ -26,6 +26,6 @@ class View_Welcome_Index extends ViewModel
 	 */
 	public function view()
 	{
-		$this->test = $this->request()->param('test', 'hoge');
+		$this->name = $this->request()->param('name', 'World');
 	}
 }

@@ -28,6 +28,12 @@ class Controller_Stream extends Controller_Template
     $res = $req->send();
 
     $rows = json_decode($res->getBody(), true);
+    /**
+     * choose the best entry : see category term ?= Music or so
+    **/
+    //{{{
+      // TODO
+    //}}}
     $info = (array)$rows['feed']['entry'][0];
 
     $elms  = explode('/',$info['id']['$t']);

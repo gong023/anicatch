@@ -6,8 +6,9 @@
   <title>あにきゃっち.net</title>
 	<?php echo Asset::css('bootstrap.css'); ?>
 	<?php echo Asset::css('common.css'); ?>
+	<?php echo Asset::js('top.js'); ?>
 </head>
-<body>
+<body onload="init()">
 	<div id="header">
 		<div class="row">
 			<div id="logo">
@@ -21,7 +22,7 @@
         <h1>今期アニメ、</h1>
         <h1>ちゃんと見てる？</h1>
       </div>
-      <div class="pull-right"><p><a class="btn btn-primary btn-large" href="/stream">or Catch Up Now ></a></p></div>
+      <div class="pull-right"><p><a class="replace-loader btn btn-primary btn-large" href="/stream">or Catch Up Now ></a></p></div>
 		</div>
 		<div class="row">
 			<div class="span4">

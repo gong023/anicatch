@@ -71,3 +71,66 @@ tr.nowplaying {
   font-weight: bold;
   background-color: #eee;
 }
+
+.play-next,.play-prev,.switch-pause,.play-direct {
+  cursor: pointer;
+}
+
+div.loader.middle {
+  float: right;
+  width:  25px;
+  height: 25px; 
+  border: thin solid #aaa;
+  border-radius: 25px;
+  -webkit-animation-name: loader;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-duration: 1s;
+}
+
+@-webkit-keyframes loader {
+  0% {
+    -webkit-transform : rotate(0deg);
+    border-radius: 30px;
+  }
+  10% {
+    -webkit-transform : rotate(36deg);
+    border-radius: 25px;
+  }
+  20% {
+    -webkit-transform : rotate(72deg);
+    border-radius: 20px;
+  }
+  30% {
+    -webkit-transform : rotate(108deg);
+    border-radius: 15px;
+  }
+  40% {
+    -webkit-transform : rotate(144deg);
+    border-radius: 10px;
+  }
+  50% {
+    -webkit-transform : rotate(180deg);
+    border-radius: 5px;
+  }
+  60% {
+    -webkit-transform : rotate(216deg);
+    border-radius: 10px;
+  }
+  70% {
+    -webkit-transform : rotate(252deg);
+    border-radius: 15px;
+  }
+  80% {
+    -webkit-transform : rotate(288deg);
+    border-radius: 20px;
+  }
+  90% {
+    -webkit-transform : rotate(324deg);
+    border-radius: 25px;
+  }
+  100% {
+    -webkit-transform : rotate(360deg);
+    border-radius: 30px;
+  }
+}

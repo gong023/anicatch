@@ -13,7 +13,7 @@
 	<div id="header">
 		<div class="row">
 			<div id="logo">
-        <h1><a href="/" class="logo">あにきゃっち.net</a><small><i> - closed β - </i></small></h1>
+        <h1><a tabindex='1' href="/" class="logo">あにきゃっち.net</a><small><i> - closed β - </i></small></h1>
       </div>
 		</div>
 	</div>

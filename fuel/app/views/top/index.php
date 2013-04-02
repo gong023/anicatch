@@ -21,7 +21,7 @@
         <h1>今期アニメ、</h1>
         <h1>ちゃんと見てる？</h1>
       </div>
-      <div class="pull-right"><p><a class="btn btn-primary btn-large" href="/hello">or Catch Up Now? ></a></p></div>
+      <div class="pull-right"><p><a class="btn btn-primary btn-large" href="/stream">or Catch Up Now ></a></p></div>
 		</div>
 		<div class="row">
 			<div class="span4">

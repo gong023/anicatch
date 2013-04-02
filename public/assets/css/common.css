@@ -1,3 +1,8 @@
+html, body {
+  height: 100%;
+  background-color: #fcfcfc;
+}
+
 #logo{
 	display: block;
 	/* width: 179px; */
@@ -6,6 +11,15 @@
 	top: 20px;
   color: #dcdcdc
 }
+
+div#logo>h1>a {
+  color: #dcdcdc;
+}
+div#logo>h1>a:hover {
+  color: #cdcdcd;
+  text-decoration: none;
+}
+
 #header{
 	height: 75px;
   background-color: #2a2a2a;
@@ -19,7 +33,7 @@
 a{
 	color: #883ced;
 }
-a:hover{
+a:hover {
 	color: #af4cf0;
 }
 .btn.btn-primary{
@@ -40,3 +54,20 @@ a:hover{
 }
 body { margin: 0px 0px 40px 0px; }
 
+div.hero-unit.stealth {
+  background-color: transparent;
+  padding-left: 0;
+  padding-top : 30px;
+}
+
+blockquote>small>a {
+  color: #999;
+}
+blockquote>small>a:hover {
+  text-decoration: none;
+}
+
+tr.nowplaying {
+  font-weight: bold;
+  background-color: #eee;
+}

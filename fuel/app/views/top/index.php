@@ -6,6 +6,7 @@
   <title>あにきゃっち.net</title>
 	<?php echo Asset::css('bootstrap.css'); ?>
 	<?php echo Asset::css('common.css'); ?>
+	<?php echo Asset::js('effect.js'); ?>
 	<?php echo Asset::js('top.js'); ?>
 </head>
 <body onload="init()">

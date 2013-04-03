@@ -134,3 +134,7 @@ div.loader.middle {
     border-radius: 30px;
   }
 }
+
+div.row.streaming-contents {
+  margin-top: 20px;
+}

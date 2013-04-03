@@ -19,10 +19,11 @@ function init(){
   initPlaylist(__playlist);
   initPlayer(__playlist[__index]['hash']);
   displayInfo();
-  registControleButtons();
+  registControleBtns();
+  registReplaceBtns();
 }
 
-function registControleButtons(){
+function registControleBtns(){
 
   var prevBtns = document.getElementsByClassName('play-prev');
   for(var i=0; i<prevBtns.length; i++){

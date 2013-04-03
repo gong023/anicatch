@@ -23,15 +23,16 @@
     <a tabindex='1' id="cont-next"  class="play-next btn btn-large">Next</a>
   </div>
 </div>
-<div class="row">
+<div class="row streaming-contents">
 	<div class="span8">
-		<h2>page 1</h2>
+    <div class="pull-right"><a class="replace-loader" href="/stream/<?php echo $page + 1; ?>">next page</a></div>
+    <h2>playlist</h2>
 		<table class="table">
       <?php for($i=0; $i<count($animes); $i++){
         echo '<tr id="index_'.$i.'" class="animetr"><td>' . $animes[$i]['title'] .'</td>';
         echo '<td><a tabindex="1" class="anime play-direct" seq="'.$i.'" hash="'.$animes[$i]['hash'].'" atitle="'.$animes[$i]['title'].'" aurl="' .$animes[$i]['url'].'">'.$animes[$i]['vtitle'] . '</a></td></tr>';
       } ?>
-      <tr><td colspan="2" style="text-align:center">&lt&lt PagingHere &gt&gt</td></tr>
+      <tr><td colspan="2" style="text-align:center">&lt&lt page<?echo $page; ?> &gt&gt</td></tr>
 		</table>
 	</div>
 	<div class="span4">

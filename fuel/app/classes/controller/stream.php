@@ -4,9 +4,13 @@ class Controller_Stream extends Controller_Template
 {
 	public function action_index()
 	{
-
     $limit = 20;
-    $query = 'SELECT * FROM animes ORDER BY unlikes DESC, created_at, likes LIMIT 0, '.$limit;
+    $page  = $this->param('page');
+    if(empty($page) || $page < 0){
+      $page   = 1;
+    }
+    $offset = $page -1;
+    $query = 'SELECT * FROM animes ORDER BY unlikes DESC, created_at, likes LIMIT '.($limit*$offset).', '.$limit;
     $list  = DB::query($query)->execute()->as_array();
 
     foreach($list as $k => $anime){
@@ -16,6 +20,7 @@ class Controller_Stream extends Controller_Template
 
 		$this->template->content = View::forge('stream/index');
     $this->template->content->animes = $list;
+    $this->template->content->page   = $page;
 	}
 
   private function _getVideoFromYouTube($anime_title, $category='OP')

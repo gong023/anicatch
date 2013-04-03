@@ -7,6 +7,7 @@
 	<?php echo Asset::css('bootstrap.css'); ?>
 	<?php echo Asset::css('common.css'); ?>
 	<?php echo Asset::js('swfobject.js'); ?>
+	<?php echo Asset::js('effect.js'); ?>
 	<?php echo Asset::js('player.js'); ?>
 </head>
 <body onload="init();">

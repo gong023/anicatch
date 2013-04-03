@@ -9,6 +9,8 @@ desktop.ini
 *.tmproj
 fuel/app/logs/*/*/*
 fuel/app/cache/*/*
+fuel/app/config/development/db.php
+fuel/app/config/db.php
 build
 nbproject/
 .idea

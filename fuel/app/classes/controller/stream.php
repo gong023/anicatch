@@ -23,23 +23,22 @@ class Controller_Stream extends Controller_Template
     $this->template->content->page   = $page;
 	}
 
-  private function _getVideoFromYouTube($anime_title, $category='OP')
+  private function _getVideoFromYouTube($anime_title, $class='OP')
   {
-    require_once 'HTTP/Request2.php';
-    $baseurl = 'http://gdata.youtube.com/feeds/api/videos?alt=json&max-results=1&q=';
-    $q = urlencode($anime_title . ' ' . $category);
+    $url = 'http://gdata.youtube.com/feeds/api/videos';
+    $url .= '?alt=json';
+    $url .= '&max-results='.'6';
+    //$url .= '&orderby='.'rating';
+    $url .= '&q='.urlencode($anime_title . ' ' . $class);
+    $url .= '&category='.urlencode('Music');
 
-    $req = new HTTP_Request2($baseurl.$q);
+    require_once 'HTTP/Request2.php';
+    $req = new HTTP_Request2($url);
     $res = $req->send();
 
     $rows = json_decode($res->getBody(), true);
-    /**
-     * choose the best entry : see category term ?= Music or so
-    **/
-    //{{{
-      // TODO
-    //}}}
-    $info = (array)$rows['feed']['entry'][0];
+
+    $info = $this->_chooseAptYouTubeVideo($rows['feed']['entry']);
 
     $elms  = explode('/',$info['id']['$t']);
     $vhash = array_pop($elms);
@@ -48,6 +47,27 @@ class Controller_Stream extends Controller_Template
     $return['vtitle'] = (isset($info['title']['$t'])) ? $info['title']['$t'] : '';
     $return['hash']   = $vhash;
     return $return;
+  }
+
+  private function _chooseAptYouTubeVideo($list)
+  {
+    foreach($list as $k => $info){
+
+      if(
+        false
+      ){
+        continue;
+      }
+
+      $content_length = $info['media$group']['media$content'][0]['duration'];
+      if(
+        $content_length > 60*7
+      ){
+        continue;
+      }
+
+      return $info;
+    }
   }
 
   private function _getVideoFromSoundCloud($anime_title)

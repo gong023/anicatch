@@ -8,6 +8,7 @@
 	<?php echo Asset::css('common.css'); ?>
 	<?php echo Asset::js('swfobject.js'); ?>
 	<?php echo Asset::js('effect.js'); ?>
+	<?php echo Asset::js('ajax.js'); ?>
 	<?php echo Asset::js('player.js'); ?>
 </head>
 <body onload="init();">
@@ -49,5 +50,7 @@
 			</p>
 		</footer>
 	</div>
+  <div id="age-face-hidden">(☝ ՞ω ՞)☝</div>
+  <div id="sage-face-hidden">(´・ω・`)</div>
 </body>
 </html>

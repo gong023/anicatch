@@ -10,9 +10,9 @@
         <h1 id="video-title">fuga</h1>
         <small><a id="video-url">hgoe</a></small>
       </blockquote>
-      <div>
-        <a tabindex='1' class="btn btn-large btn-primary">好き</a>
-        <a tabindex='1' class="btn btn-large btn-inverse">これ今期アニメじゃない</a>
+      <div id="anime-evaluation">
+        <a tabindex='1' id="like-anime"   anime-id="" class="btn btn-large btn-primary">好き</a>
+        <a tabindex='1' id="unlike-anime" anime-id="" class="btn btn-large btn-inverse">これ今期アニメじゃない</a>
       </div>
   </div>
 </div>
@@ -30,7 +30,7 @@
 		<table class="table">
       <?php for($i=0; $i<count($animes); $i++){
         echo '<tr id="index_'.$i.'" class="animetr"><td>' . $animes[$i]['title'] .'</td>';
-        echo '<td><a tabindex="1" class="anime play-direct" seq="'.$i.'" hash="'.$animes[$i]['hash'].'" atitle="'.$animes[$i]['title'].'" aurl="' .$animes[$i]['url'].'">'.$animes[$i]['vtitle'] . '</a></td></tr>';
+        echo '<td><a tabindex="1" class="anime play-direct" seq="'.$i.'" anime-id="'.$animes[$i]['id'].'" hash="'.$animes[$i]['hash'].'" atitle="'.$animes[$i]['title'].'" aurl="' .$animes[$i]['url'].'">'.$animes[$i]['vtitle'] . '</a></td></tr>';
       } ?>
       <tr><td colspan="2" style="text-align:center">&lt&lt page<?echo $page; ?> &gt&gt</td></tr>
 		</table>

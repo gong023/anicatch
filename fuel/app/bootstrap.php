@@ -7,6 +7,8 @@ class_alias('Fuel\\Core\\Autoloader', 'Autoloader');
 // Bootstrap the framework DO NOT edit this
 require COREPATH.'bootstrap.php';
 
+//define('API_HOST_URL', 'api.anicatch.net');
+define('API_HOST_URL', 'anicatch.net');
 
 Autoloader::add_classes(array(
 	// Add classes you want to override here

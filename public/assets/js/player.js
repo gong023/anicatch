@@ -134,9 +134,12 @@ function displayInfo(){
   for(var i=0; i<trs.length; i++){
     trs[i].setAttribute('class', 'animetr');
   }
-
   var tr = document.getElementById('index_' + String(__index));
   tr.setAttribute('class', 'animetr nowplaying');
+
+  // change title
+  var title = document.getElementsByTagName('title');
+  title[0].innerHTML = __playlist[__index]['atitle'] + ' - あにきゃっち.net';
 }
 
 function enableEvaluateBtns(){

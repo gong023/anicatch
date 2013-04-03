@@ -5,6 +5,8 @@ var __playlist = [];
 var __index    =  0;
 var __player   = {};
 
+var btnHTML =  '<a tabindex="1" id="like-anime"   anime-id="" class="btn btn-large btn-primary">好き</a><a tabindex="1" id="unlike-anime" anime-id="" class="btn btn-large btn-inverse">これ今期アニメじゃない</a>';
+
 // see : https://developers.google.com/youtube/js_api_reference?hl=ja#Events
 var STATE = {
   READY    : -1,
@@ -52,11 +54,12 @@ function initPlaylist(__playlist, is_sub){
   var animes = document.getElementsByClassName(class_name);
   for(var i=0; i<animes.length; i++){
     var video = {
-      "seq"    :  animes[i].getAttribute('seq'),
-      "hash"   :  animes[i].getAttribute('hash'),
-      "atitle"  :  animes[i].getAttribute('atitle'),
-      "aurl"   :  animes[i].getAttribute('aurl'),
-      "vtitle" :  animes[i].innerHTML,
+      "seq"     : animes[i].getAttribute('seq'),
+      "animeid" : animes[i].getAttribute('anime-id'),
+      "hash"    : animes[i].getAttribute('hash'),
+      "atitle"  : animes[i].getAttribute('atitle'),
+      "aurl"    : animes[i].getAttribute('aurl'),
+      "vtitle"  : animes[i].innerHTML,
     };
     __playlist.push(video);
   }
@@ -140,6 +143,15 @@ function displayInfo(){
   // change title
   var title = document.getElementsByTagName('title');
   title[0].innerHTML = __playlist[__index]['atitle'] + ' - あにきゃっち.net';
+
+  // set like and unlike btn
+  var anime_evaluation = document.getElementById('anime-evaluation');
+  anime_evaluation.innerHTML = btnHTML;
+  var likeAnimeBtn = document.getElementById('like-anime');
+  var unlikeAnimeBtn = document.getElementById('unlike-anime');
+  likeAnimeBtn.setAttribute('anime-id',   __playlist[__index]['animeid']);
+  unlikeAnimeBtn.setAttribute('anime-id', __playlist[__index]['animeid']);
+  registAjaxBtns();
 }
 
 function enableEvaluateBtns(){

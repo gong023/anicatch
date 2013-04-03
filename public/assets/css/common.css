@@ -80,7 +80,7 @@ div.loader.middle {
   float: right;
   width:  25px;
   height: 25px; 
-  border: thin solid #aaa;
+  border: medium solid #aaa;
   border-radius: 25px;
   -webkit-animation-name: loader;
   -webkit-animation-timing-function: linear;
@@ -137,4 +137,28 @@ div.loader.middle {
 
 div.row.streaming-contents {
   margin-top: 20px;
+}
+
+div#age-face-hidden {
+  position: fixed;
+  /* */
+  top: 3000px;
+  /***/
+  width: 100%;
+  text-align: center;
+  font-size: 15em;
+  font-weight: bold;
+  text-shadow: 0 0 10px #f0f;
+}
+
+div#sage-face-hidden {
+  position: fixed;
+  /* */
+  bottom: -300px;
+  /***/
+  width: 100%;
+  text-align: center;
+  font-size: 15em;
+  font-weight: bold;
+  text-shadow: 0 0 10px #000;
 }

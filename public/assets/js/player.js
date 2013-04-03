@@ -120,7 +120,7 @@ function displayInfo(){
   atitle.innerHTML = __playlist[__index]['atitle'];
 
   var vtitle = document.getElementById('video-title');
-  vtitle.innerHTML = __playlist[__index]['vtitle'];
+  vtitle.innerHTML = __playlist[__index]['vtitle'] + '<a class="btn btn-small <!--btn-inverse-->">これ違う動画</a>';
 
   var str = 'http://www.youtube.com/watch?v=' + __playlist[__index]['hash'];
   var vurl = document.getElementById('video-url');

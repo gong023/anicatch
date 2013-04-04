@@ -126,6 +126,9 @@ function displayInfo(){
   var vurl = document.getElementById('video-url');
   vurl.innerHTML = str;
   vurl.setAttribute('href', str);
+  vurl.addEventListener('click', function(){
+    pause();
+  });
 
   var str = __playlist[__index]['aurl'];
   var aurl = document.getElementById('anime-url');

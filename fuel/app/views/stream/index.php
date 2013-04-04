@@ -17,10 +17,11 @@
   </div>
 </div>
 <div class="row">
-  <div class="span12">
-    <a tabindex='1' id="cont-prev"  class="play-prev btn btn-large">Prev</a>
-    <!-- a tabindex='1' id="cont-pause" class="switch-pause btn btn-large">Pause</a -->
-    <a tabindex='1' id="cont-next"  class="play-next btn btn-large">Next</a>
+  <div id="control-pannel" class="span12">
+    <a tabindex='1' id="cont-prev"  class="btn btn-large play-prev">PREV</a>
+    <a tabindex='1' id="cont-pause" class="btn btn-large switch-pause btn-inverse" state="0">PLAY</a>
+    <a tabindex='1' id="cont-next"  class="btn btn-large play-next">NEXT</a>
+    <a tabindex='1' id="cont-hide"  class="btn btn-large hide-cont" state="1">hide</a>
   </div>
 </div>
 <div class="row streaming-contents">

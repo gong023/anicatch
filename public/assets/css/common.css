@@ -162,3 +162,15 @@ div#sage-face-hidden {
   font-weight: bold;
   text-shadow: 0 0 10px #000;
 }
+
+object#player {
+  /*
+  position: fixed;
+  top: -500px;
+  */
+}
+
+div#control-pannel {
+  padding-top: 5px;
+  border-top: thin solid #ddd;
+}

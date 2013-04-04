@@ -6,6 +6,8 @@ var __index    =  0;
 var __player   = {};
 
 var btnHTML =  '<a tabindex="1" id="like-anime"   anime-id="" class="btn btn-large btn-primary">好き</a><a tabindex="1" id="unlike-anime" anime-id="" class="btn btn-large btn-inverse">これ今期アニメじゃない</a>';
+var defPauseBtnClass =    "btn btn-large switch-pause btn-inverse",
+    pauseBtnChangeClass = "btn-inverse";
 
 // see : https://developers.google.com/youtube/js_api_reference?hl=ja#Events
 var STATE = {
@@ -44,6 +46,16 @@ function registControleBtns(){
     });
   }
 
+  var pauseBtn = document.getElementById('cont-pause');
+  pauseBtn.addEventListener('click', function(){
+    togglePauseBtnValue();
+    switchPause();
+  });
+
+  var toggleHideBtn = document.getElementById('cont-hide');
+  toggleHideBtn.addEventListener('click', function(){
+    toggleHide();
+  });
 }
 
 function initPlaylist(__playlist, is_sub){
@@ -97,6 +109,7 @@ function stateDispatcher(state){
       playNext();
       break;
     case STATE.PLAYING:
+      togglePauseBtnValue(STATE.PLAYING);
       break;
     case STATE.STOPED:
       break;
@@ -193,11 +206,71 @@ function playDirect(seq){
   _playThis();  
 }
 
-function switchPause(){
+function toggleHide(){
+  var btn = document.getElementById('cont-hide');
+  console.log(__player.style);
+  switch(btn.getAttribute('state')){
+    case "1":
+      __player.style.position = "fixed";
+      __player.style.top = "-500px";
+      btn.innerHTML = "show";
+      btn.setAttribute('state', '0');
+      break;
+    case "0":
+    default:
+      __player.style.position = "";
+      __player.style.top = "";
+      btn.innerHTML = "hide";
+      btn.setAttribute('state', '1');
+  }
+}
 
+function togglePauseBtnValue(state){
+  var btn = document.getElementById('cont-pause');
+  if(state == STATE.PLAYING){
+    btn.setAttribute('state', '0');
+  }
+  switch(btn.getAttribute('state')){
+    case "0":
+      btn.setAttribute('state', '1');
+      btn.innerHTML = 'PAUSE';
+      removeClass(btn, pauseBtnChangeClass);
+      break;
+    case "1":
+    default:
+      btn.setAttribute('state', '0');
+      btn.setAttribute('class', defPauseBtnClass);
+      btn.innerHTML = 'PLAY';
+  }
+}
+
+function switchPause(){
+  switch(__player.getPlayerState()){
+    case STATE.STOPED:
+    case STATE.READY:
+      play();
+      break;
+    case STATE.PLAYING:
+    default:
+      pause();
+      break;
+  }
+}
+
+function pause(){
+  __player.pauseVideo();
+}
+function play(){
+  __player.playVideo();
 }
 
 function _playThis(){
   __player.loadVideoById(__playlist[__index]['hash']);
   displayInfo();
+}
+
+function removeClass(el, c) {
+  var triml = /^\s+/,
+      trimr = /\s+$/;
+  el.className = (' ' + el.className + ' ').replace(' ' + c + ' ', '').replace(triml, '').replace(trimr, '');
 }

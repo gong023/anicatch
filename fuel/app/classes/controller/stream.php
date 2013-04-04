@@ -10,16 +10,21 @@ class Controller_Stream extends Controller_Template
       $page   = 1;
     }
     $offset = $page -1;
-    $query = 'SELECT * FROM animes ORDER BY unlikes DESC, created_at, likes LIMIT '.($limit*$offset).', '.$limit;
+    $query = 'SELECT * FROM animes ORDER BY unlikes, created_at DESC, likes LIMIT '.($limit*$offset).', '.$limit;
     $list  = DB::query($query)->execute()->as_array();
 
+    $animes = array();
     foreach($list as $k => $anime){
       $video_info = $this->_getVideoFromYouTube($anime['title']);
-      $list[$k]   = array_merge($list[$k], $video_info);
+      if(empty($video_info)){
+        unset($list[$k]);
+        continue;
+      }
+      $animes[] = array_merge($list[$k], $video_info);
     }
 
 		$this->template->content = View::forge('stream/index');
-    $this->template->content->animes = $list;
+    $this->template->content->animes = $animes;
     $this->template->content->page   = $page;
 	}
 
@@ -38,8 +43,14 @@ class Controller_Stream extends Controller_Template
 
     $rows = json_decode($res->getBody(), true);
 
+    if(empty($rows['feed']) || empty($rows['feed']['entry'])){
+      return null;
+    }
     $info = $this->_chooseAptYouTubeVideo($rows['feed']['entry']);
 
+    if(empty($info['id'])){
+      return null;
+    }
     $elms  = explode('/',$info['id']['$t']);
     $vhash = array_pop($elms);
 

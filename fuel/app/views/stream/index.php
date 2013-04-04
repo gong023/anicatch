@@ -21,7 +21,7 @@
     <a tabindex='1' id="cont-prev"  class="btn btn-large play-prev">PREV</a>
     <a tabindex='1' id="cont-pause" class="btn btn-large switch-pause btn-inverse" state="0">PLAY</a>
     <a tabindex='1' id="cont-next"  class="btn btn-large play-next">NEXT</a>
-    <a tabindex='1' id="cont-hide"  class="btn btn-large hide-cont" state="1">hide</a>
+    <!--a tabindex='1' id="cont-hide"  class="btn btn-large hide-cont" state="1">hide</a-->
   </div>
 </div>
 <div class="row streaming-contents">

@@ -208,7 +208,6 @@ function playDirect(seq){
 
 function toggleHide(){
   var btn = document.getElementById('cont-hide');
-  console.log(__player.style);
   switch(btn.getAttribute('state')){
     case "1":
       __player.style.position = "fixed";

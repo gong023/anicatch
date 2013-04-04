@@ -52,10 +52,10 @@ function registControleBtns(){
     switchPause();
   });
 
-  var toggleHideBtn = document.getElementById('cont-hide');
-  toggleHideBtn.addEventListener('click', function(){
-    toggleHide();
-  });
+  //var toggleHideBtn = document.getElementById('cont-hide');
+  //toggleHideBtn.addEventListener('click', function(){
+  //  toggleHide();
+  //});
 }
 
 function initPlaylist(__playlist, is_sub){
@@ -208,7 +208,6 @@ function playDirect(seq){
 
 function toggleHide(){
   var btn = document.getElementById('cont-hide');
-  console.log(__player.style);
   switch(btn.getAttribute('state')){
     case "1":
       __player.style.position = "fixed";

@@ -22,3 +22,6 @@
 [submodule "fuel/packages/log"]
 	path = fuel/packages/log
 	url = git://github.com/fuel/log.git
+[submodule "crawler"]
+	path = crawler
+	url = git@github.com:otiai10/anicatchCrawler.git

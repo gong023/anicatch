@@ -2,11 +2,12 @@
  * ajax method
 **/
 var xhr = {};
+var API_HOST_URL = 'http://api.anicatch.net';
 
 var ajax = {
   call : function(func, param, callback){
     var method  = 'POST';
-    var url     = 'http://anicatch.net';
+    var url     = API_HOST_URL;
     var async   = true;
     var data    = {};
     switch(func){
@@ -22,8 +23,8 @@ var ajax = {
     }
     xhr = new XMLHttpRequest();
     xhr.open(method, url, async, data);
-    xhr.setRequestHeader('Pragma', 'no-cache');
-    xhr.setRequestHeader('Cache-Control', 'no-cache');
+    //xhr.setRequestHeader('Pragma', 'no-cache');
+    //xhr.setRequestHeader('Cache-Control', 'no-cache');
     //xhr.setRequestHeader('If-Modified-Since', 'Thu, 01 Jun 1970 00:00:00 GMT');
     //xhr.responseType = 'json';
     xhr.onreadystatechange = function(){

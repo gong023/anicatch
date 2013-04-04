@@ -52,10 +52,10 @@ function registControleBtns(){
     switchPause();
   });
 
-  var toggleHideBtn = document.getElementById('cont-hide');
-  toggleHideBtn.addEventListener('click', function(){
-    toggleHide();
-  });
+  //var toggleHideBtn = document.getElementById('cont-hide');
+  //toggleHideBtn.addEventListener('click', function(){
+  //  toggleHide();
+  //});
 }
 
 function initPlaylist(__playlist, is_sub){

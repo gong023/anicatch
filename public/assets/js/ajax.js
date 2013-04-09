@@ -3,7 +3,8 @@
 **/
 var xhr = {};
 var API_HOST_URL  = 'http://api.anicatch.net';
-var CONFIRM_SERIF = "これ押しちゃうとこのアニメがリストに戻ってくるのはけっこう絶望的ですが、マジすか？";
+var CONFIRM_UNLIKE_SERIF = "これ押しちゃうとこのアニメがリストに戻ってくるのはけっこう絶望的ですが、マジすか？";
+var CONFIRM_REJECT_SERIF = "マッチしてない動画を排除できます。消してもよい？";
 
 var ajax = {
   call : function(func, param, callback){
@@ -17,6 +18,10 @@ var ajax = {
         break;
       case 'unlikeAnime':
         url += ('/anime/' + param + '/unlike');
+        break;
+      case 'rejectVideo':
+        console.log(param);
+        url += ('/anime/' + param.anime_id + '/reject/' + param.vhash);
         break;
       default:
         console.log('Undefined ajax func call');
@@ -55,7 +60,7 @@ function registAjaxBtns(){
     var self = this;
     ajax.call('likeAnime', this.getAttribute('anime-id'), function(res){
       console.log('Ajax is back -> ', res);
-      if(Boolean(res.result)){
+      if(res.result){
         ageAction(function(){
           //replaceInnerHTML(self, '<h1>(☝ ՞ω ՞)☝</h1>');
           replaceInnerHTML(self, '<div></div>');
@@ -65,15 +70,37 @@ function registAjaxBtns(){
   });
   var unlikeAnimeBtn = document.getElementById('unlike-anime');
   unlikeAnimeBtn.addEventListener('click',function(){
-    if(window.confirm(CONFIRM_SERIF)){
+    if(window.confirm(CONFIRM_UNLIKE_SERIF)){
       var self = this;
       ajax.call('unlikeAnime', this.getAttribute('anime-id'), function(res){
         console.log('Ajax is back -> ', res);
-        if(Boolean(res.result)){
+        if(res.result){
           sageAction(function(){
             //replaceInnerHTML(self, '<h1>(´・ω・`)</h1>', { color : '#aaa'});
             replaceInnerHTML(self, '<div></div>');
           });
+        }else{
+          alert('ちょっと失敗した');
+        }
+      });
+    }
+  });
+  var videoWrong = document.getElementById('video-wrong');
+  videoWrong.addEventListener('click',function(){
+    if(window.confirm(CONFIRM_REJECT_SERIF)){
+      var self = this;
+      var param = {
+        anime_id : this.getAttribute('anime-id'),
+        vhash    : this.getAttribute('vhash'),
+      };
+      ajax.call('rejectVideo', param, function(res){
+        console.log('Ajax is back -> ', res);
+        if(res.result){
+          rejectAction(function(){
+            replaceInnerHTML(self, '<div></div>');
+          });
+        }else{
+          alert('ちょっと失敗した');
         }
       });
     }

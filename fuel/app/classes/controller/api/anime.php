@@ -2,6 +2,8 @@
 
 class Controller_Api_Anime extends Controller_Rest
 {
+  protected $mess;
+
 	public function action_like()
 	{
     $params = $this->params();
@@ -40,10 +42,34 @@ class Controller_Api_Anime extends Controller_Rest
     $this->response(json_encode($res));
 	}
 
+  public function action_reject()
+  {
+    $params = $this->params();
+    $params['action'] = 'reject';
+    $res = array(
+      'result' => "false",
+      'params' => $params,
+    );
+    if($this->_isValidParams($params) && isset($params['vhash'])){
+      if($this->rejectVideoOfAnime($params['id'], $params['vhash'])){
+        $res['result'] = true;
+        if(isset($this->mess)){
+          $res['message'] = $this->mess;
+        }
+      }
+    }
+    $this->response(json_encode($res));
+  }
+
   private function _isValidParams($params)
   {
     if(! is_numeric($params['id'])){
       return false;
+    }
+    if(isset($params['vhash'])){
+      if(!preg_match('/[a-zA-Z0-9_]{11}/', $params['vhash'])){
+        return false;
+      }
     }
     return true;
   }
@@ -60,16 +86,35 @@ class Controller_Api_Anime extends Controller_Rest
 
   private function updateAnimeLikesUnlikesById($id, $params)
   {
-      if(isset($params['likes'])){
-        $query   = 'UPDATE animes SET likes='   . $params['likes']   .' WHERE id='.$id;
+    $success = false;
+    if(isset($params['likes'])){
+      $query   = 'UPDATE animes SET likes='   . $params['likes']   .' WHERE id='.$id;
+      $success = DB::query($query)->execute();
+    }else if(isset($params['unlikes'])){
+      $query   = 'UPDATE animes SET unlikes=' . $params['unlikes'] .' WHERE id='.$id;
+      $success = DB::query($query)->execute();
+    }
+    if($success){
+      return true;
+    }
+    return false;
+  }
+
+  private function rejectVideoOfAnime($id, $params)
+  {
+    $success = false;
+    if(isset($params['vhash'])){
+      $query = "INSERT IGNORE INTO rejected_videos (anime_id, hash, created_at) VALUES ('{$id}', '{$params['vhash']}', NOW())";
+      try {
         $success = DB::query($query)->execute();
-      }else if(isset($params['unlikes'])){
-        $query   = 'UPDATE animes SET unlikes=' . $params['unlikes'] .' WHERE id='.$id;
-        $success = DB::query($query)->execute();
+      } catch (Exception $e) {
+        $this->mess = $e->getMessage();
       }
-      if($success){
-        return true;
-      }
-      return false;
-  } 
+      $success = true;
+    }
+    if($success){
+      return true;
+    }
+    return false;
+  }
 }

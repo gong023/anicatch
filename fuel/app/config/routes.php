@@ -6,5 +6,6 @@ return array(
 	'stream(/:page)?'  => 'stream/index',
   'anime/:id/like'   => 'api/anime/like',
   'anime/:id/unlike' => 'api/anime/unlike',
+  'anime/:id/reject(/:vhash)?' => 'api/anime/reject',
 	'hello(/:name)?'   => array('top/hello', 'name' => 'hello'),
 );

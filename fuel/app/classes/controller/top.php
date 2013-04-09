@@ -37,9 +37,9 @@ class Controller_Top extends Controller
 	{
     // TODO: use model : $query=DB::select()->from(‘animes’)->execute();
     $limit = 20;
-    $query0 = 'SELECT * FROM animes ORDER BY unlikes DESC, created_at, likes LIMIT 0, '.$limit;
-    $query1 = 'SELECT * FROM animes ORDER BY unlikes DESC, created_at, likes LIMIT ' . ($limit*1) . ',' . $limit;
-    $query2 = 'SELECT * FROM animes ORDER BY unlikes DESC, created_at, likes LIMIT ' . ($limit*2) . ',' . $limit;
+    $query0 = 'SELECT * FROM animes ORDER BY unlikes DESC, created_at DESC, likes LIMIT 0, '.$limit;
+    $query1 = 'SELECT * FROM animes ORDER BY unlikes DESC, created_at DESC, likes LIMIT ' . ($limit*1) . ',' . $limit;
+    $query2 = 'SELECT * FROM animes ORDER BY unlikes DESC, created_at DESC, likes LIMIT ' . ($limit*2) . ',' . $limit;
     $list0 = DB::query($query0)->execute()->as_array();
     $list1 = DB::query($query1)->execute()->as_array();
     $list2 = DB::query($query2)->execute()->as_array();

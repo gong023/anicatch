@@ -164,6 +164,18 @@ div#sage-face-hidden {
   text-shadow: 0 0 10px #000;
 }
 
+div#reject-face-hidden {
+  position: fixed;
+  /* */
+  top: 90px;
+  left: 2000px;
+  /***/
+  width: 2000px;
+  font-size: 3em;
+  line-height: 1.5em;
+  font-weight: bold;
+}
+
 object#player {
   /*
   position: fixed;

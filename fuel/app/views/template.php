@@ -52,5 +52,15 @@
 	</div>
   <div id="age-face-hidden">(☝ ՞ω ՞)☝</div>
   <div id="sage-face-hidden">(´・ω・`)</div>
+<div id="reject-face-hidden">
+　 ∧_∧<br>
+⊂（#・ω・） これは<span id="atitle-reject"></span>の曲じゃない！<br>
+　/　　　ﾉ∪ <br>
+　し―-J　|l| | <br>
+　　 　 　 　 人ﾍﾟｼｯ!! <br>
+　　　　　　　＿＿ <br>
+　　　　　　　＼　 ＼ <br>
+　　　　　　　　 ￣￣ <br>
+</div>
 </body>
 </html>

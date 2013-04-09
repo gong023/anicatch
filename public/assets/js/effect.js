@@ -25,6 +25,11 @@ function sageAction(callback){
   _SlideAnimation(dom, { bottom : '1500px' }, { bottom : '-500px' }, 300, callback);
 }
 
+function rejectAction(callback){
+  var dom = document.getElementById('reject-face-hidden');
+  _FlowAnimation(dom, '2000px', '-1000px', 400, callback);
+}
+
 function _SlideAnimation(dom, start, dest, duration, cb){
   cb(); // do not wait this action
   var distPerIteration = 0;
@@ -66,6 +71,30 @@ function _SlideAnimation(dom, start, dest, duration, cb){
   },1);
 }
 
+function _FlowAnimation(dom, startleft, destleft, duration, cb){
+  cb(); // do not wait this action
+  var distPerIteration = 0;
+  var cnt = 0;
+  distPerIteration = Math.floor(Math.abs(_extrPX(destleft) - _extrPX(startleft)) / duration);
+  dom.style.left    = startleft;
+  var animation = setInterval(function(){
+    // TODO: do not use counter
+    cnt++;
+    if(cnt > 3000){
+      clearInterval(animation);
+    }
+    if(dom.style.left == destleft){
+      // finish condition
+      clearInterval(animation);
+      dom.style.left = startleft + 'px';
+      cb();
+    }else{
+      // is not finish
+      dom.style.left = (_extrPX(dom.style.left) - distPerIteration) + 'px';
+    }
+  },1);
+}
 function _extrPX(pixelString){
   return parseInt(pixelString.replace('px',''));
 }
+

@@ -101,7 +101,7 @@ function onYouTubePlayerReady(){
 }
 
 function stateDispatcher(state){
-  console.log(state);
+  //console.log(state);
   switch(state){
     case STATE.READY:
       break;
@@ -133,7 +133,11 @@ function displayInfo(){
   atitle.innerHTML = __playlist[__index]['atitle'];
 
   var vtitle = document.getElementById('video-title');
-  vtitle.innerHTML = __playlist[__index]['vtitle'] + '<a class="btn btn-small <!--btn-inverse-->">これ違う動画</a>';
+  var innerVal = __playlist[__index]['vtitle'];
+  innerVal += '<a id="video-wrong" vhash="' + __playlist[__index]['hash'] + '" anime-id="' + __playlist[__index]['id'] + '" class="btn btn-small">';
+  innerVal += 'これ違う動画';
+  innerVal += '</a>';
+  vtitle.innerHTML = __playlist[__index]['vtitle'] + '<a id="video-wrong" vhash="' + __playlist[__index]['hash'] + '" anime-id="' + __playlist[__index]['animeid'] + '" class="btn btn-small <!--btn-inverse-->">これ違う動画</a>';
 
   var str = 'http://www.youtube.com/watch?v=' + __playlist[__index]['hash'];
   var vurl = document.getElementById('video-url');
@@ -168,6 +172,9 @@ function displayInfo(){
   likeAnimeBtn.setAttribute('anime-id',   __playlist[__index]['animeid']);
   unlikeAnimeBtn.setAttribute('anime-id', __playlist[__index]['animeid']);
   registAjaxBtns();
+
+  var face = document.getElementById('atitle-reject');
+  face.innerHTML = __playlist[__index]['atitle'];
 }
 
 function enableEvaluateBtns(){
@@ -201,7 +208,6 @@ function playPrev(){
 }
 
 function playDirect(seq){
-  console.log(seq);
   __index = parseInt(seq);
   _playThis();  
 }

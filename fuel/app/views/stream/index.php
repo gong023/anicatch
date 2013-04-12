@@ -5,10 +5,10 @@
   </div>
   <div class="span6">
       <blockquote style="word-break: break-word;">
-        <h3 id="anime-title">hoge</h3>
-        <small><a id="anime-url" target="_blank">hgoe</a></small>
-        <h1 id="video-title">fuga</h1>
-        <small><a id="video-url" target="_blank">hgoe</a></small>
+        <h3 id="anime-title">Now Loading...</h3>
+        <small><a id="anime-url" target="_blank">hoge</a></small>
+        <h1 id="video-title">Now Loading...</h1>
+        <small><a id="video-url" target="_blank">fuga</a></small>
       </blockquote>
       <div id="anime-evaluation">
         <a tabindex='1' id="like-anime"   anime-id="" class="btn btn-large btn-primary">好き</a>

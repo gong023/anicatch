@@ -2,14 +2,26 @@
 <html>
 <head>
 	<meta charset="utf-8">
-  <link rel="shorcut icon" href="assets/img/favicon.ico">
+  <link rel="shorcut icon" href="assets/img/anicatch.png">
   <title>あにきゃっち.net</title>
+  <meta property="og:image" content="http://anicatch.net/assets/img/anicatch.png">
+  <meta property="og:description" content="アニメを見る暇無いのなら、オープニングだけ聞けばいいじゃない">
 	<?php echo Asset::css('bootstrap.css'); ?>
 	<?php echo Asset::css('common.css'); ?>
 	<?php echo Asset::js('effect.js'); ?>
 	<?php echo Asset::js('top.js'); ?>
 </head>
 <body onload="init()">
+  <div id="fb-root"></div>
+  <script>
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/ja_JP/all.js#xfbml=1";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>
 	<div id="header">
 		<div class="row">
 			<div id="logo">
@@ -47,7 +59,10 @@
 		</div>
 		<hr/>
 		<footer>
-			<p class="pull-right">Page rendered in {exec_time}s using {mem_usage}mb of memory.</p>
+			<p class="pull-right">
+        <!-- Page rendered in {exec_time}s using {mem_usage}mb of memory. -->
+        <div class="fb-like pull-right" data-href="http://anicatch.net" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-font="arial"></div>
+      </p>
 			<p>
 				<a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.<br>
 				<small>Version: <?php echo Fuel::VERSION; ?></small>

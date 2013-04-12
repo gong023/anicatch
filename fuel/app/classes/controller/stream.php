@@ -10,7 +10,7 @@ class Controller_Stream extends Controller_Template
       $page   = 1;
     }
     $offset = $page -1;
-    $query = 'SELECT * FROM animes ORDER BY unlikes, created_at DESC, likes LIMIT '.($limit*$offset).', '.$limit;
+    $query = 'SELECT * FROM animes ORDER BY unlikes, created_at DESC, likes DESC LIMIT '.($limit*$offset).', '.$limit;
     $list  = DB::query($query)->execute()->as_array();
 
     $animes = array();

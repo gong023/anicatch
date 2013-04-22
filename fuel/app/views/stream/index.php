@@ -26,7 +26,7 @@
 </div>
 <div class="row streaming-contents">
 	<div class="span8">
-    <div class="pull-right"><a class="replace-loader" href="/stream/<?php echo $page + 1; ?>">next page</a></div>
+    <div class="pull-right"><a class="replace-loader" href="/stream/<?php echo $page + 1; echo '/' . $get_parameter; ?>">next page</a></div>
     <h2>playlist</h2>
 		<table class="table">
       <?php for($i=0; $i<count($animes); $i++){

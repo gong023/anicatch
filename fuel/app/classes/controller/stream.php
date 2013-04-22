@@ -24,17 +24,39 @@ class Controller_Stream extends Controller_Template
     }
 
     $this->template->content = View::forge('stream/index');
-    $this->template->content->animes = $this->_checkNew($animes);
-    $this->template->content->page   = $page;
+    $this->template->content->animes        = $this->_checkNew($animes);
+    $this->template->content->page          = $page;
+    $this->template->content->get_parameter = $this->generateGetParameter();
   }
 
-  private function _getVideoFromYouTube($anime_title, $class='OP')
+  private function generateGetParameter()
   {
+    $_params = array();
+    if(Input::get('mode') === 'ending'){
+      $_params['mode'] = 'ending';
+    }
+    $parameter_string = '';
+    $_i = 0;
+    foreach($_params as $key => $val){
+      if($_i===0){
+        $parameter_string .= '?';
+      }else{
+        $parameter_string .= '&';
+      }
+      $parameter_string .= $key . '=' . $val;
+    }
+    return $parameter_string;
+  }
+
+  private function _getVideoFromYouTube($anime_title, $mode='OP')
+  {
+    if(Input::get('mode') === 'ending'){ $mode = 'ED'; }
+
     $url = 'http://gdata.youtube.com/feeds/api/videos';
     $url .= '?alt=json';
     $url .= '&max-results='.'6';
     //$url .= '&orderby='.'rating';
-    $url .= '&q='.urlencode($anime_title . ' ' . $class);
+    $url .= '&q='.urlencode($anime_title . ' ' . $mode);
     $url .= '&category='.urlencode('Music');
 
     require_once 'HTTP/Request2.php';

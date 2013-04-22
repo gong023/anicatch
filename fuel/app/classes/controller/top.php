@@ -45,7 +45,7 @@ class Controller_Top extends Controller
     $list2 = DB::query($query2)->execute()->as_array();
 
     $view = ViewModel::forge('top/index');
-    $view->set('list0', $list0);
+    $view->set('list0', $this->_checkNew($list0));
     $view->set('list1', $list1);
     $view->set('list2', $list2);
 		return Response::forge($view);

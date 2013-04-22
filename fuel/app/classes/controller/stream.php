@@ -2,8 +2,8 @@
 
 class Controller_Stream extends Controller_Template
 {
-	public function action_index()
-	{
+  public function action_index()
+  {
     $limit = 20;
     $page  = $this->param('page');
     if(empty($page) || $page < 0){
@@ -23,10 +23,10 @@ class Controller_Stream extends Controller_Template
       $animes[] = array_merge($list[$k], $video_info);
     }
 
-		$this->template->content = View::forge('stream/index');
+    $this->template->content = View::forge('stream/index');
     $this->template->content->animes = $this->_checkNew($animes);
     $this->template->content->page   = $page;
-	}
+  }
 
   private function _getVideoFromYouTube($anime_title, $class='OP')
   {
@@ -64,9 +64,7 @@ class Controller_Stream extends Controller_Template
   {
     foreach($list as $k => $info){
 
-      if(
-        preg_match('/てみた/', $info['title']['$t'])
-      ){
+      if(Input::get('allow') !== 'all' && $this->_checkUTATTEMITA($info)){
         continue;
       }
 
@@ -79,6 +77,16 @@ class Controller_Stream extends Controller_Template
 
       return $info;
     }
+  }
+
+  private function _checkUTATTEMITA($info)
+  {
+    if(
+      preg_match('/てみた/', $info['title']['$t'])
+    ){
+      return true;
+    }
+    return false;
   }
 
   private function _getVideoFromSoundCloud($anime_title)

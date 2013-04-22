@@ -65,7 +65,7 @@ class Controller_Stream extends Controller_Template
     foreach($list as $k => $info){
 
       if(
-        false
+        preg_match('/てみた/', $info['title']['$t'])
       ){
         continue;
       }

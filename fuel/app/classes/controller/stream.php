@@ -24,7 +24,7 @@ class Controller_Stream extends Controller_Template
     }
 
 		$this->template->content = View::forge('stream/index');
-    $this->template->content->animes = $animes;
+    $this->template->content->animes = $this->_checkNew($animes);
     $this->template->content->page   = $page;
 	}
 

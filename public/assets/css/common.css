@@ -61,6 +61,23 @@ div.hero-unit.stealth {
   padding-top : 30px;
 }
 
+div.hero-unit>div>small {
+  color: #999;
+}
+
+hr.styling {
+  background-color: transparent;
+  color: transparent;
+  height: 0;
+  border: 0;
+  clear: both;
+  padding:0;
+  margin: 0;
+}
+
+hr.styling.margined {
+  margin-top: 40px;
+}
 blockquote>small>a {
   color: #999;
 }

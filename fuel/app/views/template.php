@@ -4,8 +4,9 @@
 	<meta charset="utf-8">
   <link rel="shorcut icon" href="assets/img/anicatch.png">
   <title>あにきゃっち.net</title>
+  <meta property="og:url" content="http://anicatch.net/">
   <meta property="og:image" content="http://anicatch.net/assets/img/anicatch.png">
-  <meta property="og:description" content="アニメを見る暇無いのなら、オープニングだけ聞けばいいじゃない">
+  <meta property="og:description" content="アニメを見る暇が無いのなら、オープニングだけ聞けばいいじゃない">
 	<?php echo Asset::css('bootstrap.css'); ?>
 	<?php echo Asset::css('common.css'); ?>
 	<?php echo Asset::js('swfobject.js'); ?>
@@ -61,7 +62,7 @@
       </p>
 			<p>
 				Powered by <a href="http://fuelphp.com">FuelPHP</a> : released under the MIT license.<br>
-				<!-- small>Version: <?php echo e(Fuel::VERSION); ?></small -->
+				<small>about this site, All right reserved. Copyright otiai10<!--Version: <?php echo Fuel::VERSION; ?>--></small>
 			</p>
 		</footer>
 	</div>

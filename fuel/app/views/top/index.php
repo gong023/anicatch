@@ -4,8 +4,9 @@
 	<meta charset="utf-8">
   <link rel="shorcut icon" href="assets/img/anicatch.png">
   <title>あにきゃっち.net</title>
+  <meta property="og:url" content="http://anicatch.net/">
   <meta property="og:image" content="http://anicatch.net/assets/img/anicatch.png">
-  <meta property="og:description" content="アニメを見る暇無いのなら、オープニングだけ聞けばいいじゃない">
+  <meta property="og:description" content="アニメを見る暇が無いのなら、オープニングだけ聞けばいいじゃない">
 	<?php echo Asset::css('bootstrap.css'); ?>
 	<?php echo Asset::css('common.css'); ?>
 	<?php echo Asset::js('effect.js'); ?>
@@ -31,17 +32,30 @@
 	</div>
 	<div class="container">
 		<div class="hero-unit">
-			<div>
+      <div>
         <h1>今期アニメ、</h1>
         <h1>ちゃんと見てる？</h1>
       </div>
-      <div class="pull-right"><p><a class="replace-loader btn btn-primary btn-large" href="/stream">or Catch Up Now ></a></p></div>
+      <hr class="styling margined">
+      <div class="pull-right">
+        <small>アニメを見る暇が無いのなら、オープニングだけ聞けばいいじゃない</small>
+        <p><a class="replace-loader btn btn-primary btn-large pull-right" href="/stream">Streaming ></a></p>
+      </div>
+      <hr class="styling">
 		</div>
 		<div class="row">
 			<div class="span4">
 				<h2>list 1</h2>
 				<table class="table">
-          <?php foreach($list0 as $k => $v){ echo '<tr><td><a href="'.$v['url'].'">' . $v['title'] . "</a></td></tr>"; } ?>
+          <?php
+            foreach($list0 as $k => $v){
+              echo '<tr><td>';
+              if($v['is_new']){ echo '<small style="color:red">NEW!</small>'; }
+              echo '<a href="'.$v['url'].'">';
+              echo $v['title'] . "</a>";
+              echo "</td></tr>";
+            }
+          ?>
 				</table>
 			</div>
 			<div class="span4">
@@ -65,7 +79,7 @@
       </p>
 			<p>
 				<a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.<br>
-				<small>Version: <?php echo Fuel::VERSION; ?></small>
+				<small>about this site, All right reserved. Copyright otiai10<!--Version: <?php echo Fuel::VERSION; ?>--></small>
 			</p>
 		</footer>
 	</div>

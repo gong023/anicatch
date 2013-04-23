@@ -52,7 +52,7 @@
             foreach($list0 as $k => $v){
               echo '<tr><td>';
               if($v['is_new']){ echo '<small style="color:red">NEW!</small>'; }
-              echo '<a href="'.$v['url'].'">';
+              echo '<a href="http://anicatch.net/anime/'.$v['id'].'/stream">';
               echo $v['title'] . "</a>";
               echo "</td></tr>";
             }
@@ -62,13 +62,29 @@
 			<div class="span4">
 				<h2>list 2</h2>
 				<table class="table">
-          <?php foreach($list1 as $k => $v){ echo '<tr><td><a href="'.$v['url'].'">' . $v['title'] . "</a></td></tr>"; } ?>
+          <?php
+            foreach($list1 as $k => $v){
+              echo '<tr><td>';
+              if($v['is_new']){ echo '<small style="color:red">NEW!</small>'; }
+              echo '<a href="http://anicatch.net/anime/'.$v['id'].'/stream">';
+              echo $v['title'] . "</a>";
+              echo "</td></tr>";
+            }
+          ?>
 				</table>
 			</div>
 			<div class="span4">
 				<h2>list 3</h2>
 				<table class="table">
-          <?php foreach($list2 as $k => $v){ echo '<tr><td><a href="'.$v['url'].'">' . $v['title'] . "</a></td></tr>"; } ?>
+          <?php
+            foreach($list2 as $k => $v){
+              echo '<tr><td>';
+              if($v['is_new']){ echo '<small style="color:red">NEW!</small>'; }
+              echo '<a href="http://anicatch.net/anime/'.$v['id'].'/stream">';
+              echo $v['title'] . "</a>";
+              echo "</td></tr>";
+            }
+          ?>
 				</table>
 			</div>
 		</div>

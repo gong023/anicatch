@@ -37,14 +37,22 @@
 </div>
 <div class="row streaming-contents">
 	<div class="span8">
-    <div class="pull-right"><a class="replace-loader" href="/stream/<?php echo $page + 1; echo '/' . $get_parameter; ?>">next page</a></div>
+    <?php if(isset($page)){ ?>
+      <div class="pull-right"><a class="replace-loader" href="/stream/<?php echo $page + 1; echo '/' . $get_parameter; ?>">next page</a></div>
+    <?php } ?>
     <h2>playlist</h2>
 		<table class="table">
       <?php for($i=0; $i<count($animes); $i++){
         echo '<tr id="index_'.$i.'" class="animetr"><td>' . $animes[$i]['title'] .'</td>';
         echo '<td><a tabindex="1" class="anime play-direct" seq="'.$i.'" anime-id="'.$animes[$i]['id'].'" hash="'.$animes[$i]['hash'].'" atitle="'.$animes[$i]['title'].'" aurl="' .$animes[$i]['url'].'">'.$animes[$i]['vtitle'] . '</a></td></tr>';
       } ?>
-      <tr><td colspan="2" style="text-align:center">&lt&lt page<?echo $page; ?> &gt&gt</td></tr>
+      <tr><td colspan="2" style="text-align:center">
+      <?php if(isset($page)){ ?>
+        &lt&lt page<?echo $page; ?> &gt&gt
+      <?php }else{
+        echo $animes[0]['title'];
+      } ?>
+      </td></tr>
 		</table>
 	</div>
 	<div class="span4">

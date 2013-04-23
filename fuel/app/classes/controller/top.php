@@ -46,8 +46,8 @@ class Controller_Top extends Controller
 
     $view = ViewModel::forge('top/index');
     $view->set('list0', $this->_checkNew($list0));
-    $view->set('list1', $list1);
-    $view->set('list2', $list2);
+    $view->set('list1', $this->_checkNew($list1));
+    $view->set('list2', $this->_checkNew($list2));
 		return Response::forge($view);
 	}
 

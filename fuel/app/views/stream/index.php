@@ -14,6 +14,17 @@
         <a tabindex='1' id="like-anime"   anime-id="" class="btn btn-large btn-primary">好き</a>
         <a tabindex='1' id="unlike-anime" anime-id="" class="btn btn-large btn-inverse">これ今期アニメじゃない</a>
       </div>
+      <div id="share">
+        <div id="share-fb">
+          <img src="http://anicatch.net/assets/img/share_fb.png">
+        </div>
+        <div id="share-tw">
+          <img src="http://anicatch.net/assets/img/share_tw.png">
+        </div>
+        <div id="share-sh">
+          <span>SoundHook</span>
+        </div>
+      </div>
   </div>
 </div>
 <div class="row">

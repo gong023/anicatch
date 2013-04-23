@@ -46,7 +46,7 @@
 		</div>
 		<div class="row">
 			<div class="span4">
-				<h2>list 1</h2>
+				<h2><a href="/stream">page 1</a></h2>
 				<table class="table">
           <?php
             foreach($list0 as $k => $v){
@@ -60,7 +60,7 @@
 				</table>
 			</div>
 			<div class="span4">
-				<h2>list 2</h2>
+				<h2><a href="/stream/2">page 2</a></h2>
 				<table class="table">
           <?php
             foreach($list1 as $k => $v){
@@ -74,7 +74,7 @@
 				</table>
 			</div>
 			<div class="span4">
-				<h2>list 3</h2>
+				<h2><a href="/stream/3">page 3</a></h2>
 				<table class="table">
           <?php
             foreach($list2 as $k => $v){

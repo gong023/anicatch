@@ -32,12 +32,15 @@ class Controller_Stream extends Controller_Template
   private function generateGetParameter()
   {
     $_params = array();
-    if(Input::get('mode') === 'ending'){
-      $_params['mode'] = 'ending';
+    switch(Input::get('mode')){
+      case 'ending':
+      case  'remix':
+        $_params['mode'] = Input::get('mode');
+        break;
+      default:
+        // do nothing
     }
-    if(Input::get('mode') === 'remix'){
-      $_params['mode'] = 'remix';
-    }
+
     $parameter_string = '';
     $_i = 0;
     foreach($_params as $key => $val){
@@ -53,8 +56,16 @@ class Controller_Stream extends Controller_Template
 
   private function _getVideoFromYouTube($anime_title, $mode='OP')
   {
-    if(Input::get('mode') === 'ending'){ $mode = 'ED'; }
-    if(Input::get('mode') === 'remix'){ $mode = 'REMIX'; }
+    switch(Input::get('mode')){
+      case 'ending':
+        $mode = 'ED';
+        break;
+      case 'remix':
+        $mode = 'REMIX';
+        break;
+      default:
+        // do nothing
+    }
 
     $url = 'http://gdata.youtube.com/feeds/api/videos';
     $url .= '?alt=json';

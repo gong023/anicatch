@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-  <link rel="shorcut icon" href="assets/img/anicatch.png">
+  <link rel="shorcut icon" href="http://anicatch.net/assets/img/anicatch.png">
   <title>あにきゃっち.net</title>
   <meta property="og:url" content="http://anicatch.net/">
   <meta property="og:image" content="http://anicatch.net/assets/img/anicatch.png">
@@ -78,5 +78,6 @@
 　　　　　　　＼　 ＼ <br>
 　　　　　　　　 ￣￣ <br>
 </div>
+<?php echo Asset::js('social.js'); ?>
 </body>
 </html>

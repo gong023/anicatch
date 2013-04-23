@@ -204,3 +204,56 @@ div#control-pannel {
   padding-top: 5px;
   border-top: thin solid #ddd;
 }
+
+div#anime-evaluation {
+  margin-bottom: 10px;
+}
+
+div#share {
+  display: -webkit-box;
+  display:    -moz-box;
+  display:         box;
+  height: 16px;
+  position: relative;
+}
+div#share>div:hover {
+  -webkit-opacity: 1;
+     -moz-opacity: 1;
+          opacity: 1;
+}
+div#share>div {
+  -webkit-opacity: 0.5;
+     -moz-opacity: 0.5;
+          opacity: 0.5;
+  cursor: pointer;
+  position: absolute;
+  bottom: 0;
+}
+div#share>div#share-fb {
+  left: 0px;
+}
+div#share>div#share-tw {
+  left: 17px;
+}
+div#share>div>img {
+  height: 16px;
+}
+div>#share>div#share-sh {
+  left: 34px;
+  height: 16px;
+  background-color: #000;
+  -webkit-border-radius: 2px;
+     -moz-border-radius: 2px;
+          border-radius: 2px;
+}
+div#share-sh>span {
+  display: -webkit-box;
+  display:    -moz-box;
+  display:         box;
+  color: #fff;
+  font-weight: bold;
+  font-size: 8px;
+  padding-left: 5px;
+  padding-top: 1px;
+  padding-bottom: 3px;
+}

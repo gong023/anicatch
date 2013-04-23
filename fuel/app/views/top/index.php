@@ -11,6 +11,7 @@
 	<?php echo Asset::css('common.css'); ?>
 	<?php echo Asset::js('effect.js'); ?>
 	<?php echo Asset::js('top.js'); ?>
+	<?php echo Asset::js('social.js'); ?>
 </head>
 <body onload="init()">
   <div id="fb-root"></div>

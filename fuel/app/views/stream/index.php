@@ -1,9 +1,10 @@
 <div class="row">
   <div class="span6">
+    <div id="soundcloud"></div>
     <div id="video">
     </div>
   </div>
-  <div class="span6">
+  <div class="span6" style="margin-bottom:20px">
       <blockquote style="word-break: break-word;">
         <h3 id="anime-title">Now Loading...</h3>
         <small><a id="anime-url" target="_blank">hoge</a></small>

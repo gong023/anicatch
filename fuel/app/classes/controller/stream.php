@@ -13,9 +13,16 @@ class Controller_Stream extends Controller_Template
     $query = 'SELECT * FROM animes ORDER BY unlikes, created_at DESC, likes DESC LIMIT '.($limit*$offset).', '.$limit;
     $list  = DB::query($query)->execute()->as_array();
 
+    $soundcloud = false;
     $animes = array();
     foreach($list as $k => $anime){
-      $video_info = $this->_getVideoFromYouTube($anime['title']);
+      $video_info = array();
+      if(Input::get('src') === 'soundcloud'){
+        $soundcloud = true;
+        $video_info = $this->_getVideoFromSoundCloud($anime['title']);
+      }else{
+        $video_info = $this->_getVideoFromYouTube($anime['title']);
+      }
       if(empty($video_info)){
         unset($list[$k]);
         continue;
@@ -27,6 +34,7 @@ class Controller_Stream extends Controller_Template
     $this->template->content->animes        = $this->_checkNew($animes);
     $this->template->content->page          = $page;
     $this->template->content->get_parameter = $this->generateGetParameter();
+    $this->template->soundcloud             = $soundcloud;
   }
 
   public function action_anime()
@@ -59,6 +67,13 @@ class Controller_Stream extends Controller_Template
       case 'ending':
       case  'remix':
         $_params['mode'] = Input::get('mode');
+        break;
+      default:
+        // do nothing
+    }
+    switch(Input::get('src')){
+      case  'soundcloud':
+        $_params['src'] = Input::get('src');
         break;
       default:
         // do nothing
@@ -174,8 +189,60 @@ class Controller_Stream extends Controller_Template
     return false;
   }
 
-  private function _getVideoFromSoundCloud($anime_title)
+  private function _getVideoFromSoundCloud($anime_title, $is_anime_permalink=false)
   {
+    $mode = '';
+    switch(Input::get('mode')){
+      case 'opening':
+        $mode = 'OP';
+        break;
+      case 'ending':
+        $mode = 'ED';
+        break;
+      case 'remix':
+        $mode = 'REMIX';
+        break;
+      default:
+        // do nothing
+    }
 
+    $url = 'http://api.soundcloud.com/tracks.json?client_id=9ec24de791694f759c44ca0cf9f560de';
+    if($is_anime_permalink){
+      $url .= '&limit='.'20';
+    }else{
+      //$url .= '&limit='.'6';
+      $url .= '&limit='.'1';
+    }
+    //$url .= '&orderby='.'rating';
+    $url .= '&q='.urlencode($anime_title . ' ' . $mode);
+
+    require_once 'HTTP/Request2.php';
+    $req = new HTTP_Request2($url);
+    $res = $req->send();
+
+    $rows = json_decode($res->getBody(), true);
+    if(empty($rows)){
+      return null;
+    }
+
+    if($is_anime_permalink){
+      $video_lists = array();
+      foreach($rows as $info){
+        $video = array();
+        $video['vtitle'] = (isset($info['title'])) ? $info['title'] : '';
+        $video['hash']   = $info['permalink_url'];
+        $video_lists[]   = $video;
+      }
+      return $video_lists;
+    }
+
+    // {{{ choose one
+    $info = array_pop($rows); //$this->_chooseAptYouTubeVideo($rows['feed']['entry']);
+
+    $return = array();
+    $return['vtitle'] = (isset($info['title'])) ? $info['title'] : '';
+    $return['hash']   = $info['permalink_url'];
+    return $return;
+    // }}}
   }
 }

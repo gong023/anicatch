@@ -48,6 +48,7 @@ class Controller_Stream extends Controller_Template
     }
     $list  = DB::query($query)->execute()->as_array();
 
+    $soundcloud = false;
     $animes = array();
     $anime = array_shift($list);
     $video_infos = $this->_getVideoFromYouTube($anime['title'], true);
@@ -58,6 +59,7 @@ class Controller_Stream extends Controller_Template
     $this->template->content = View::forge('stream/index');
     $this->template->content->animes        = $this->_checkNew($animes);
     $this->template->content->get_parameter = $this->generateGetParameter();
+    $this->template->soundcloud             = $soundcloud;
   }
 
   private function generateGetParameter()

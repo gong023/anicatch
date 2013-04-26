@@ -9,10 +9,16 @@
   <meta property="og:description" content="アニメを見る暇が無いのなら、オープニングだけ聞けばいいじゃない">
 	<?php echo Asset::css('bootstrap.css'); ?>
 	<?php echo Asset::css('common.css'); ?>
-	<?php echo Asset::js('swfobject.js'); ?>
 	<?php echo Asset::js('effect.js'); ?>
 	<?php echo Asset::js('ajax.js'); ?>
-	<?php echo Asset::js('player.js'); ?>
+  <?php if($soundcloud){ ?>
+    <script src="http://connect.soundcloud.com/sdk.js"></script>
+    <script src="https://w.soundcloud.com/player/api.js"></script>
+    <?php echo Asset::js('soundcloud_player.js'); ?>
+  <? }else{
+    echo Asset::js('swfobject.js');
+	  echo Asset::js('player.js');
+  } ?>
 </head>
 <body onload="init();">
   <div id="fb-root"></div>

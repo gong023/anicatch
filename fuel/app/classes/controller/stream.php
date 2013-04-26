@@ -34,6 +34,7 @@ class Controller_Stream extends Controller_Template
     $this->template->content->animes        = $this->_checkNew($animes);
     $this->template->content->page          = $page;
     $this->template->content->get_parameter = $this->generateGetParameter();
+    $this->template->content->isSoundCloud  = $soundcloud;
     $this->template->soundcloud             = $soundcloud;
   }
 
@@ -59,6 +60,7 @@ class Controller_Stream extends Controller_Template
     $this->template->content = View::forge('stream/index');
     $this->template->content->animes        = $this->_checkNew($animes);
     $this->template->content->get_parameter = $this->generateGetParameter();
+    $this->template->content->isSoundCloud  = $soundcloud;
     $this->template->soundcloud             = $soundcloud;
   }
 

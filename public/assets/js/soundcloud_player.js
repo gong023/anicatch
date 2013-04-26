@@ -5,16 +5,23 @@ var __playlist = [];
 var __index    =  0;
 var __player   = {};
 
+var host2widgetBaseUrl = {
+  "wt.soundcloud.dev" : "wt.soundcloud.dev:9200/",
+  "wt.soundcloud.com" : "wt.soundcloud.com/player/",
+  "w.soundcloud.com"  : "w.soundcloud.com/player/"
+};
+
+var widgetBaseUrl = "w.soundcloud.com/player/";
+
 var btnHTML =  '<a tabindex="1" id="like-anime"   anime-id="" class="btn btn-large btn-primary">好き</a><a tabindex="1" id="unlike-anime" anime-id="" class="btn btn-large btn-inverse">これ今期アニメじゃない</a>';
 var defPauseBtnClass =    "btn btn-large switch-pause btn-inverse",
     pauseBtnChangeClass = "btn-inverse";
 
 function init(){
-//  initPlaylist(__playlist);
-//  initPlayer(__playlist[__index]['hash']);
-  initPlayer('http://soundcloud.com/forss/flickermood');
-//  displayInfo();
-//  registControleBtns();
+  initPlaylist();
+  initPlayer(__playlist[__index]['hash']);
+  displayInfo();
+  registControleBtns();
 //  registReplaceBtns();
 }
 
@@ -49,7 +56,8 @@ function registControleBtns(){
   //});
 }
 
-function initPlaylist(__playlist){
+function initPlaylist(){
+  __playlist = [];
   var class_name = 'anime';
   var animes = document.getElementsByClassName(class_name);
   for(var i=0; i<animes.length; i++){
@@ -66,25 +74,40 @@ function initPlaylist(__playlist){
 }
 
 function initPlayer(initialID){
+  var iframe = document.querySelector('.iframe');
+  iframe.src = location.protocol + "//" + widgetBaseUrl + "?url=" + initialID;
+  __player = SC.Widget(iframe);
+/**
   SC.initialize({
     client_id: '9ec24de791694f759c44ca0cf9f560de'
   });
 
   var track_url = initialID;
-  SC.oEmbed(track_url, { auto_play: true }, function(oEmbed) {
-    //console.log('oEmbed response: ' + oEmbed);
-    console.log(oEmbed.html);
+  //SC.oEmbed(track_url, { auto_play: true }, function(oEmbed) {
+  SC.oEmbed(track_url, { auto_play: false }, function(oEmbed) {
     var soundcloud = document.getElementById('soundcloud');
     soundcloud.innerHTML = oEmbed.html;
+    set__player();
   });
+**/
 }
 
-// pre-registered method
-function onYouTubePlayerReady(){
-  __player = document.getElementById('player');
-  __player.addEventListener("onStateChange", "stateDispatcher");
-  __player.addEventListener("onError",       "errorHandler");
+function set__player(){
+  setTimeout(function(){
+    var iframeElement   = document.querySelector('iframe');
+    __player            = SC.Widget(iframeElement);
+    console.log('__PLAYERRRRRRR');
+    console.log(__player);
+    console.log(__player.getVolume());
+  },1000);
 }
+
+//// pre-registered method
+//function onYouTubePlayerReady(){
+//  __player = document.getElementById('player');
+//  __player.addEventListener("onStateChange", "stateDispatcher");
+//  __player.addEventListener("onError",       "errorHandler");
+//}
 
 function stateDispatcher(state){
   //console.log(state);
@@ -256,8 +279,8 @@ function play(){
 }
 
 function _playThis(){
-  __player.loadVideoById(__playlist[__index]['hash']);
-  displayInfo();
+  __player.load(__playlist[__index]['hash']);
+  //displayInfo();
 }
 
 function removeClass(el, c) {

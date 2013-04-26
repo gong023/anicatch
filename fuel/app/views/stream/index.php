@@ -1,8 +1,16 @@
 <div class="row">
   <div class="span6">
-    <div id="soundcloud"></div>
+    <?php if($isSoundCloud){ ?>
+      <iframe class="iframe"
+        width="100%"
+        height="206"
+        scrolling="no"
+        frameborder="no">
+      </iframe>
+    <?php }else{ ?>
     <div id="video">
     </div>
+    <?php } ?>
   </div>
   <div class="span6" style="margin-bottom:20px">
       <blockquote style="word-break: break-word;">

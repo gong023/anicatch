@@ -130,10 +130,7 @@ function displayInfo(){
 
   var vtitle = document.getElementById('video-title');
   var innerVal = __playlist[__index]['vtitle'];
-  innerVal += '<a id="video-wrong" vhash="' + __playlist[__index]['hash'] + '" anime-id="' + __playlist[__index]['id'] + '" class="btn btn-small">';
-  innerVal += 'これ違う動画';
-  innerVal += '</a>';
-  vtitle.innerHTML = __playlist[__index]['vtitle'] + '<a id="video-wrong" vhash="' + __playlist[__index]['hash'] + '" anime-id="' + __playlist[__index]['animeid'] + '" class="btn btn-small <!--btn-inverse-->">これ違う動画</a>';
+  vtitle.innerHTML = __playlist[__index]['vtitle'];
 
   var str = 'http://www.youtube.com/watch?v=' + __playlist[__index]['hash'];
   var vurl = document.getElementById('video-url');

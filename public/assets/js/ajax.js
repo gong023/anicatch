@@ -20,8 +20,7 @@ var ajax = {
         url += ('/anime/' + param + '/unlike');
         break;
       case 'rejectVideo':
-        console.log(param);
-        url += ('/anime/' + param.anime_id + '/reject/' + param.vhash);
+        url += ('/anime/' + param.anime_id + '/reject/' + param.vhash + '/src/' + param.src);
         break;
       default:
         console.log('Undefined ajax func call');
@@ -95,6 +94,10 @@ function registAjaxBtns(){
         anime_id : __playlist[__index]['animeid'],
         vhash    : __playlist[__index]['hash'],
       };
+      param.src = 1;//youtube
+      if(window.location.search.match(/soundcloud/)){
+        param.src = 2;//soundcloud
+      }
       ajax.call('rejectVideo', param, function(res){
         console.log('Ajax is back -> ', res);
         if(res.result){

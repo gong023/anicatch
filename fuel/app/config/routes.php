@@ -7,7 +7,7 @@ return array(
   'anime/:id/stream' => 'stream/anime',
   'anime/:id/like'   => 'api/anime/like',
   'anime/:id/unlike' => 'api/anime/unlike',
-  'anime/:id/reject(/:vhash)?' => 'api/anime/reject',
+  'anime/:id/reject/:vhash/src/:src' => 'api/anime/reject',
 
   'login' => 'login/index',
 	//'hello(/:name)?'   => array('top/hello', 'name' => 'hello'),

@@ -55,7 +55,7 @@
     <h2>playlist</h2>
 		<table class="table">
       <?php for($i=0; $i<count($animes); $i++){
-        echo '<tr id="index_'.$i.'" class="animetr"><td>' . $animes[$i]['title'] .'</td>';
+        echo '<tr id="index_'.$i.'" class="animetr"><td><a class="black" href="/anime/'.$animes[$i]['id'].'/stream'.$get_parameter.'">'. $animes[$i]['title'] .'</td>';
         echo '<td><a tabindex="1" class="anime play-direct" seq="'.$i.'" anime-id="'.$animes[$i]['id'].'" hash="'.$animes[$i]['hash'].'" atitle="'.$animes[$i]['title'].'" aurl="' .$animes[$i]['url'].'">'.$animes[$i]['vtitle'] . '</a></td></tr>';
       } ?>
       <tr><td colspan="2" style="text-align:center">

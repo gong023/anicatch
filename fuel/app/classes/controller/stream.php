@@ -27,7 +27,12 @@ class Controller_Stream extends Controller_Template
         unset($list[$k]);
         continue;
       }
-      $animes[] = array_merge($list[$k], $video_info);
+      // なるべくパーマリンク性を確保したいとおもっているのだけれど
+      if(urlencode(Input::get('v')) == urlencode($video_info['hash'])){
+        array_unshift($animes, array_merge($list[$k], $video_info));
+      }else{
+        $animes[] = array_merge($list[$k], $video_info);
+      }
     }
 
     $this->template->content = View::forge('stream/index');
@@ -59,8 +64,14 @@ class Controller_Stream extends Controller_Template
       $video_infos = $this->_getVideoFromYouTube($anime['title'], true);
     }
     foreach($video_infos as $video_info){
-      $animes[] = array_merge($anime, $video_info);
+      // なるべくパーマリンク性を確保したいとおもっているのだけれど
+      if(urlencode(Input::get('v')) == urlencode($video_info['hash'])){
+        array_unshift($animes, array_merge($anime, $video_info));
+      }else{
+        $animes[] = array_merge($anime, $video_info);
+      }
     }
+
 
     $this->template->content = View::forge('stream/index');
     $this->template->content->animes        = $this->_checkNew($animes);

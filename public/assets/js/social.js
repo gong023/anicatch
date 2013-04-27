@@ -13,13 +13,53 @@ window.fbAsyncInit = function() {
   share_fb.addEventListener('click',function(e){
     FB.ui({
       method: 'feed',
-      name: __playlist[__index]['vtitle'],
-      caption: 'YouTube via あにきゃっち.net',
-      //description: 'ですくりぷしょん',
-      link: 'http://www.youtube.com/watch?v=' + __playlist[__index]['hash'],
+      name: __playlist[__index]['atitle'] + ' ' + __playlist[__index]['vtitle'],
+      caption: generateOriginalURL(),
+      description: generateOriginalURL() + ' アニメを見る暇が無いのなら、オープニングだけ聞けばいいじゃない？',
+      picture : 'http://anicatch.net/assets/img/anicatch.png',
+      link: window.location.origin + window.location.pathname + generateGetParameterForShare(),
     });
   });
 };
+
+function generateGetParameterForShare(){
+  var elms = window.location.search.split(/[\?\&=]/);
+  elms.shift();
+  var i = 0;
+  var queries = {};
+  while(true){
+    if(elms[i] == void 0){
+      break;
+    }
+    var key = elms[i];
+    var val = elms[i+1];
+    queries[key] = val;
+    i = i + 2;
+  }
+  // over write
+  queries['v'] = __playlist[__index]['hash']; 
+  var get_parameter_str = '';
+  var first = true;
+  for(var i in queries){
+    var sep = (first==true) ? '?' : '&';
+    get_parameter_str += (sep + i + '=' + queries[i]);
+    first = false;
+  }
+  return get_parameter_str;
+}
+
+function generateOriginalURL(){
+  if(isSoundCloud()){
+    return __playlist[__index]['hash'];
+  }else{
+    return 'http://www.youtube.com/watch?v=' + __playlist[__index]['hash'];
+  }
+}
+
+function isSoundCloud(){
+  return window.location.search.match(/soundcloud/);
+}
+
 // Load the SDK Asynchronously
 (function(d, s, id){
  var js, fjs = d.getElementsByTagName(s)[0];
@@ -52,7 +92,7 @@ window.fbAsyncInit = function() {
 
 function createShareUrl(){
   var music = __playlist[__index];
-  var share_url = encodeURIComponent('http://youtu.be/'+music.hash) + '&text=' + encodeURIComponent(music.vtitle) + ' via @AnicatchNet';
+  var share_url = encodeURIComponent(window.location.origin + window.location.pathname + generateGetParameterForShare()) + '&text=' + encodeURIComponent(music.vtitle) + ' via @AnicatchNet';
   return share_url;
 }
 

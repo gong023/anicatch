@@ -5,17 +5,23 @@ var __playlist = [];
 var __index    =  0;
 var __player   = {};
 
-var btnHTML =  '<a tabindex="1" id="like-anime"   anime-id="" class="btn btn-large btn-primary">好き</a><a tabindex="1" id="unlike-anime" anime-id="" class="btn btn-large btn-inverse">これ今期アニメじゃない</a>';
+var host2widgetBaseUrl = {
+  "wt.soundcloud.dev" : "wt.soundcloud.dev:9200/",
+  "wt.soundcloud.com" : "wt.soundcloud.com/player/",
+  "w.soundcloud.com"  : "w.soundcloud.com/player/"
+};
+
+var widgetBaseUrl = "w.soundcloud.com/player/";
+
 var defPauseBtnClass =    "btn btn-large switch-pause btn-inverse",
     pauseBtnChangeClass = "btn-inverse";
 
 function init(){
-//  initPlaylist(__playlist);
-//  initPlayer(__playlist[__index]['hash']);
-  initPlayer('http://soundcloud.com/forss/flickermood');
-//  displayInfo();
-//  registControleBtns();
-//  registReplaceBtns();
+  initPlaylist();
+  initPlayer(__playlist[__index]['hash']);
+  displayInfo();
+  registControleBtns();
+  registAjaxBtns();
 }
 
 function registControleBtns(){
@@ -39,17 +45,13 @@ function registControleBtns(){
 
   var pauseBtn = document.getElementById('cont-pause');
   pauseBtn.addEventListener('click', function(){
-    togglePauseBtnValue();
     switchPause();
   });
 
-  //var toggleHideBtn = document.getElementById('cont-hide');
-  //toggleHideBtn.addEventListener('click', function(){
-  //  toggleHide();
-  //});
 }
 
-function initPlaylist(__playlist){
+function initPlaylist(){
+  __playlist = [];
   var class_name = 'anime';
   var animes = document.getElementsByClassName(class_name);
   for(var i=0; i<animes.length; i++){
@@ -66,46 +68,29 @@ function initPlaylist(__playlist){
 }
 
 function initPlayer(initialID){
-  SC.initialize({
-    client_id: '9ec24de791694f759c44ca0cf9f560de'
-  });
-
-  var track_url = initialID;
-  SC.oEmbed(track_url, { auto_play: true }, function(oEmbed) {
-    //console.log('oEmbed response: ' + oEmbed);
-    console.log(oEmbed.html);
-    var soundcloud = document.getElementById('soundcloud');
-    soundcloud.innerHTML = oEmbed.html;
-  });
+  var iframe = document.querySelector('.iframe');
+  iframe.src = location.protocol + "//" + widgetBaseUrl + "?url=" + initialID;
+  __player = SC.Widget(iframe);
+  bindStateDispatcher();
 }
 
-// pre-registered method
-function onYouTubePlayerReady(){
-  __player = document.getElementById('player');
-  __player.addEventListener("onStateChange", "stateDispatcher");
-  __player.addEventListener("onError",       "errorHandler");
+function set__player(){
+  setTimeout(function(){
+    var iframeElement   = document.querySelector('iframe');
+    __player            = SC.Widget(iframeElement);
+  },1000);
 }
 
-function stateDispatcher(state){
-  //console.log(state);
-  switch(state){
-    case STATE.READY:
-      break;
-    case STATE.ENDED:
-      playNext();
-      break;
-    case STATE.PLAYING:
-      togglePauseBtnValue(STATE.PLAYING);
-      break;
-    case STATE.STOPED:
-      break;
-    case STATE.BUFFERING:
-      break;
-    case STATE.HEADED:
-      break;
-    default:
-      // do nothing
-  }
+function bindStateDispatcher(){
+  __player.bind(SC.Widget.Events.FINISH, function(){
+    playNext();
+  });
+  __player.bind(SC.Widget.Events.PLAY, function(){
+    transformToPause();
+  });
+  __player.bind(SC.Widget.Events.PAUSE, function(){
+    transformToPlay();
+  });
 }
 
 function errorHandler(){
@@ -119,13 +104,9 @@ function displayInfo(){
   atitle.innerHTML = __playlist[__index]['atitle'];
 
   var vtitle = document.getElementById('video-title');
-  var innerVal = __playlist[__index]['vtitle'];
-  innerVal += '<a id="video-wrong" vhash="' + __playlist[__index]['hash'] + '" anime-id="' + __playlist[__index]['id'] + '" class="btn btn-small">';
-  innerVal += 'これ違う動画';
-  innerVal += '</a>';
-  vtitle.innerHTML = __playlist[__index]['vtitle'] + '<a id="video-wrong" vhash="' + __playlist[__index]['hash'] + '" anime-id="' + __playlist[__index]['animeid'] + '" class="btn btn-small <!--btn-inverse-->">これ違う動画</a>';
+  vtitle.innerHTML = __playlist[__index]['vtitle'];
 
-  var str = 'http://www.youtube.com/watch?v=' + __playlist[__index]['hash'];
+  var str = __playlist[__index]['hash'];
   var vurl = document.getElementById('video-url');
   vurl.innerHTML = str;
   vurl.setAttribute('href', str);
@@ -149,15 +130,6 @@ function displayInfo(){
   // change title
   var title = document.getElementsByTagName('title');
   title[0].innerHTML = __playlist[__index]['atitle'] + ' - あにきゃっち.net';
-
-  // set like and unlike btn
-  var anime_evaluation = document.getElementById('anime-evaluation');
-  anime_evaluation.innerHTML = btnHTML;
-  var likeAnimeBtn = document.getElementById('like-anime');
-  var unlikeAnimeBtn = document.getElementById('unlike-anime');
-  likeAnimeBtn.setAttribute('anime-id',   __playlist[__index]['animeid']);
-  unlikeAnimeBtn.setAttribute('anime-id', __playlist[__index]['animeid']);
-  registAjaxBtns();
 
   var face = document.getElementById('atitle-reject');
   face.innerHTML = __playlist[__index]['atitle'];
@@ -198,65 +170,36 @@ function playDirect(seq){
   _playThis();  
 }
 
-function toggleHide(){
-  var btn = document.getElementById('cont-hide');
-  switch(btn.getAttribute('state')){
-    case "1":
-      __player.style.position = "fixed";
-      __player.style.top = "-500px";
-      btn.innerHTML = "show";
-      btn.setAttribute('state', '0');
-      break;
-    case "0":
-    default:
-      __player.style.position = "";
-      __player.style.top = "";
-      btn.innerHTML = "hide";
-      btn.setAttribute('state', '1');
-  }
+
+function transformToPause(){
+  var btn = document.getElementById('cont-pause');
+  btn.setAttribute('state', '1');
+  btn.innerHTML = 'PAUSE';
+  removeClass(btn, pauseBtnChangeClass);
 }
 
-function togglePauseBtnValue(state){
+function transformToPlay(){
   var btn = document.getElementById('cont-pause');
-  if(state == STATE.PLAYING){
-    btn.setAttribute('state', '0');
-  }
-  switch(btn.getAttribute('state')){
-    case "0":
-      btn.setAttribute('state', '1');
-      btn.innerHTML = 'PAUSE';
-      removeClass(btn, pauseBtnChangeClass);
-      break;
-    case "1":
-    default:
-      btn.setAttribute('state', '0');
-      btn.setAttribute('class', defPauseBtnClass);
-      btn.innerHTML = 'PLAY';
-  }
+  btn.setAttribute('state', '0');
+  btn.setAttribute('class', defPauseBtnClass);
+  btn.innerHTML = 'PLAY';
 }
 
 function switchPause(){
-  switch(__player.getPlayerState()){
-    case STATE.STOPED:
-    case STATE.READY:
-      play();
-      break;
-    case STATE.PLAYING:
-    default:
-      pause();
-      break;
-  }
+  __player.toggle();
 }
 
 function pause(){
-  __player.pauseVideo();
+  __player.pause();
 }
 function play(){
-  __player.playVideo();
+  __player.play();
 }
 
 function _playThis(){
-  __player.loadVideoById(__playlist[__index]['hash']);
+  __player.load(__playlist[__index]['hash'],{callback:function(){
+    __player.play();
+  }});
   displayInfo();
 }
 

@@ -25,6 +25,7 @@ function init(){
   displayInfo();
   registControleBtns();
   registReplaceBtns();
+  registAjaxBtns();
 }
 
 function registControleBtns(){
@@ -51,11 +52,6 @@ function registControleBtns(){
     togglePauseBtnValue();
     switchPause();
   });
-
-  //var toggleHideBtn = document.getElementById('cont-hide');
-  //toggleHideBtn.addEventListener('click', function(){
-  //  toggleHide();
-  //});
 }
 
 function initPlaylist(__playlist, is_sub){
@@ -134,10 +130,7 @@ function displayInfo(){
 
   var vtitle = document.getElementById('video-title');
   var innerVal = __playlist[__index]['vtitle'];
-  innerVal += '<a id="video-wrong" vhash="' + __playlist[__index]['hash'] + '" anime-id="' + __playlist[__index]['id'] + '" class="btn btn-small">';
-  innerVal += 'これ違う動画';
-  innerVal += '</a>';
-  vtitle.innerHTML = __playlist[__index]['vtitle'] + '<a id="video-wrong" vhash="' + __playlist[__index]['hash'] + '" anime-id="' + __playlist[__index]['animeid'] + '" class="btn btn-small <!--btn-inverse-->">これ違う動画</a>';
+  vtitle.innerHTML = __playlist[__index]['vtitle'];
 
   var str = 'http://www.youtube.com/watch?v=' + __playlist[__index]['hash'];
   var vurl = document.getElementById('video-url');
@@ -163,15 +156,6 @@ function displayInfo(){
   // change title
   var title = document.getElementsByTagName('title');
   title[0].innerHTML = __playlist[__index]['atitle'] + ' - あにきゃっち.net';
-
-  // set like and unlike btn
-  var anime_evaluation = document.getElementById('anime-evaluation');
-  anime_evaluation.innerHTML = btnHTML;
-  var likeAnimeBtn = document.getElementById('like-anime');
-  var unlikeAnimeBtn = document.getElementById('unlike-anime');
-  likeAnimeBtn.setAttribute('anime-id',   __playlist[__index]['animeid']);
-  unlikeAnimeBtn.setAttribute('anime-id', __playlist[__index]['animeid']);
-  registAjaxBtns();
 
   var face = document.getElementById('atitle-reject');
   face.innerHTML = __playlist[__index]['atitle'];

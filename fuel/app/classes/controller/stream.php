@@ -34,6 +34,7 @@ class Controller_Stream extends Controller_Template
     $this->template->content->animes        = $this->_checkNew($animes);
     $this->template->content->page          = $page;
     $this->template->content->get_parameter = $this->generateGetParameter();
+    $this->template->content->isSoundCloud  = $soundcloud;
     $this->template->soundcloud             = $soundcloud;
   }
 
@@ -51,7 +52,12 @@ class Controller_Stream extends Controller_Template
     $soundcloud = false;
     $animes = array();
     $anime = array_shift($list);
-    $video_infos = $this->_getVideoFromYouTube($anime['title'], true);
+    if(Input::get('src') === 'soundcloud'){
+      $soundcloud = true;
+      $video_infos = $this->_getVideoFromSoundCloud($anime['title'], true);
+    }else{
+      $video_infos = $this->_getVideoFromYouTube($anime['title'], true);
+    }
     foreach($video_infos as $video_info){
       $animes[] = array_merge($anime, $video_info);
     }
@@ -59,19 +65,16 @@ class Controller_Stream extends Controller_Template
     $this->template->content = View::forge('stream/index');
     $this->template->content->animes        = $this->_checkNew($animes);
     $this->template->content->get_parameter = $this->generateGetParameter();
+    $this->template->content->isSoundCloud  = $soundcloud;
     $this->template->soundcloud             = $soundcloud;
   }
 
   private function generateGetParameter()
   {
     $_params = array();
-    switch(Input::get('mode')){
-      case 'ending':
-      case  'remix':
-        $_params['mode'] = Input::get('mode');
-        break;
-      default:
-        // do nothing
+    $_q = Input::get('q');
+    if(!empty($_q)){
+      $_params['q'] = $_q;
     }
     switch(Input::get('src')){
       case  'soundcloud':
@@ -96,16 +99,10 @@ class Controller_Stream extends Controller_Template
 
   private function _getVideoFromYouTube($anime_title, $is_anime_permalink=false)
   {
-    $mode = 'OP';
-    switch(Input::get('mode')){
-      case 'ending':
-        $mode = 'ED';
-        break;
-      case 'remix':
-        $mode = 'REMIX';
-        break;
-      default:
-        // do nothing
+    $q = 'OP';
+    $_q = Input::get('q');
+    if(!empty($_q)){
+      $q = $_q;
     }
 
     $url = 'http://gdata.youtube.com/feeds/api/videos';
@@ -116,7 +113,7 @@ class Controller_Stream extends Controller_Template
       $url .= '&max-results='.'6';
     }
     //$url .= '&orderby='.'rating';
-    $url .= '&q='.urlencode($anime_title . ' ' . $mode);
+    $url .= '&q='.urlencode($anime_title . ' ' . $q);
     $url .= '&category='.urlencode('Music');
 
     require_once 'HTTP/Request2.php';
@@ -193,30 +190,17 @@ class Controller_Stream extends Controller_Template
 
   private function _getVideoFromSoundCloud($anime_title, $is_anime_permalink=false)
   {
-    $mode = '';
-    switch(Input::get('mode')){
-      case 'opening':
-        $mode = 'OP';
-        break;
-      case 'ending':
-        $mode = 'ED';
-        break;
-      case 'remix':
-        $mode = 'REMIX';
-        break;
-      default:
-        // do nothing
-    }
+    $q = Input::get('q');
 
     $url = 'http://api.soundcloud.com/tracks.json?client_id=9ec24de791694f759c44ca0cf9f560de';
     if($is_anime_permalink){
       $url .= '&limit='.'20';
     }else{
-      //$url .= '&limit='.'6';
-      $url .= '&limit='.'1';
+      $url .= '&limit='.'6';
+      //$url .= '&limit='.'1';
     }
-    //$url .= '&orderby='.'rating';
-    $url .= '&q='.urlencode($anime_title . ' ' . $mode);
+    $url .= '&genres='.'Anime';
+    $url .= '&q='.urlencode($anime_title . ' ' . $q);
 
     require_once 'HTTP/Request2.php';
     $req = new HTTP_Request2($url);

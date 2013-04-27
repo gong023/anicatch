@@ -20,8 +20,7 @@ var ajax = {
         url += ('/anime/' + param + '/unlike');
         break;
       case 'rejectVideo':
-        console.log(param);
-        url += ('/anime/' + param.anime_id + '/reject/' + param.vhash);
+        url += ('/anime/' + param.anime_id + '/reject/' + param.vhash + '/src/' + param.src);
         break;
       default:
         console.log('Undefined ajax func call');
@@ -58,7 +57,7 @@ function registAjaxBtns(){
   var likeAnimeBtn = document.getElementById('like-anime');
   likeAnimeBtn.addEventListener('click',function(){
     var self = this;
-    ajax.call('likeAnime', this.getAttribute('anime-id'), function(res){
+    ajax.call('likeAnime', __playlist[__index]['animeid'], function(res){
       console.log('Ajax is back -> ', res);
       if(res.result){
         ageAction(function(){
@@ -69,30 +68,36 @@ function registAjaxBtns(){
     });
   });
   var unlikeAnimeBtn = document.getElementById('unlike-anime');
-  unlikeAnimeBtn.addEventListener('click',function(){
-    if(window.confirm(CONFIRM_UNLIKE_SERIF)){
-      var self = this;
-      ajax.call('unlikeAnime', this.getAttribute('anime-id'), function(res){
-        console.log('Ajax is back -> ', res);
-        if(res.result){
-          sageAction(function(){
-            //replaceInnerHTML(self, '<h1>(´・ω・`)</h1>', { color : '#aaa'});
-            replaceInnerHTML(self, '<div></div>');
-          });
-        }else{
-          alert('ちょっと失敗した');
-        }
-      });
-    }
-  });
+  if(unlikeAnimeBtn){
+    unlikeAnimeBtn.addEventListener('click',function(){
+      if(window.confirm(CONFIRM_UNLIKE_SERIF)){
+        var self = this;
+        ajax.call('unlikeAnime', __playlist[__index]['animeid'], function(res){
+          console.log('Ajax is back -> ', res);
+          if(res.result){
+            sageAction(function(){
+              //replaceInnerHTML(self, '<h1>(´・ω・`)</h1>', { color : '#aaa'});
+              replaceInnerHTML(self, '<div></div>');
+            });
+          }else{
+            alert('ちょっと失敗した');
+          }
+        });
+      }
+    });
+  }
   var videoWrong = document.getElementById('video-wrong');
   videoWrong.addEventListener('click',function(){
     if(window.confirm(CONFIRM_REJECT_SERIF)){
       var self = this;
       var param = {
-        anime_id : this.getAttribute('anime-id'),
-        vhash    : this.getAttribute('vhash'),
+        anime_id : __playlist[__index]['animeid'],
+        vhash    : __playlist[__index]['hash'],
       };
+      param.src = 1;//youtube
+      if(window.location.search.match(/soundcloud/)){
+        param.src = 2;//soundcloud
+      }
       ajax.call('rejectVideo', param, function(res){
         console.log('Ajax is back -> ', res);
         if(res.result){
@@ -100,7 +105,7 @@ function registAjaxBtns(){
             replaceInnerHTML(self, '<div></div>');
           });
         }else{
-          alert('ちょっと失敗した');
+          console.log('ちょっと失敗した(☝◞‸◟)☝');
         }
       });
     }

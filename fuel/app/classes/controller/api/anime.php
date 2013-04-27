@@ -50,8 +50,8 @@ class Controller_Api_Anime extends Controller_Rest
       'result' => "false",
       'params' => $params,
     );
-    if($this->_isValidParams($params) && isset($params['vhash'])){
-      if($this->rejectVideoOfAnime($params['id'], $params['vhash'])){
+    if($this->_isValidParams($params) && isset($params['vhash']) && isset($params['src'])){
+      if($this->rejectVideoOfAnime($params['id'], $params['vhash'], $params['src'])){
         $res['result'] = true;
         if(isset($this->mess)){
           $res['message'] = $this->mess;
@@ -67,7 +67,18 @@ class Controller_Api_Anime extends Controller_Rest
       return false;
     }
     if(isset($params['vhash'])){
-      if(!preg_match('/[a-zA-Z0-9_]{11}/', $params['vhash'])){
+      if(isset($params['src'])){
+        if($params['src'] == SRC_SOUNDCLOUD){
+          //url mach
+        }else{
+          if(!preg_match('/[a-zA-Z0-9_]{11}/', $params['vhash'])){
+            return false;
+          }
+        }
+      }
+    }
+    if(isset($params['src'])){
+      if(!is_numeric($params['src'])){
         return false;
       }
     }
@@ -100,17 +111,14 @@ class Controller_Api_Anime extends Controller_Rest
     return false;
   }
 
-  private function rejectVideoOfAnime($id, $params)
+  private function rejectVideoOfAnime($id, $hash, $src)
   {
     $success = false;
-    if(isset($params['vhash'])){
-      $query = "INSERT IGNORE INTO rejected_videos (anime_id, hash, created_at) VALUES ('{$id}', '{$params['vhash']}', NOW())";
-      try {
-        $success = DB::query($query)->execute();
-      } catch (Exception $e) {
-        $this->mess = $e->getMessage();
-      }
-      $success = true;
+    $query = "INSERT IGNORE INTO rejected_videos (src, anime_id, hash, created_at) VALUES ('{$src}','{$id}', '{$hash}', NOW())";
+    try {
+      $success = DB::query($query)->execute();
+    } catch (Exception $e) {
+      $this->mess = $e->getMessage();
     }
     if($success){
       return true;

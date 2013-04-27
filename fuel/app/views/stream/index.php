@@ -15,25 +15,28 @@
   <div class="span6" style="margin-bottom:20px">
       <blockquote style="word-break: break-word;">
         <h3 id="anime-title">Now Loading...</h3>
+        <a tabindex='1' id="like-anime" anime-id="" class="btn btn-mini">好き</a>
+        <?php if(isset($is_admin) && $is_admin){ ?>
+          <a tabindex='1' id="unlike-anime" anime-id="" class="btn btn-mini btn-inverse">これ今期アニメじゃない</a>
+        <?php } ?>
         <small><a id="anime-url" target="_blank">hoge</a></small>
         <h1 id="video-title">Now Loading...</h1>
+        <a id="video-wrong" class="btn btn-mini">これ違う動画</a>
         <small><a id="video-url" target="_blank">fuga</a></small>
+        <div id="share">
+          <div id="share-fb">
+            <img src="http://anicatch.net/assets/img/share_fb.png">
+          </div>
+          <div id="share-tw">
+            <img src="http://anicatch.net/assets/img/share_tw.png">
+          </div>
+          <?php if(!$isSoundCloud){ ?>
+            <div id="share-sh">
+              <span>SoundHook</span>
+            </div>
+          <?php } ?>
+        </div>
       </blockquote>
-      <div id="anime-evaluation">
-        <a tabindex='1' id="like-anime"   anime-id="" class="btn btn-large btn-primary">好き</a>
-        <a tabindex='1' id="unlike-anime" anime-id="" class="btn btn-large btn-inverse">これ今期アニメじゃない</a>
-      </div>
-      <div id="share">
-        <div id="share-fb">
-          <img src="http://anicatch.net/assets/img/share_fb.png">
-        </div>
-        <div id="share-tw">
-          <img src="http://anicatch.net/assets/img/share_tw.png">
-        </div>
-        <div id="share-sh">
-          <span>SoundHook</span>
-        </div>
-      </div>
   </div>
 </div>
 <div class="row">

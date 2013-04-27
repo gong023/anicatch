@@ -41,10 +41,12 @@ window.fbAsyncInit = function() {
 
   // {{{ #share-sh click
   var share_sh = document.getElementById('share-sh');
-  share_sh.addEventListener('click',function(){
-    var soundhook_url = createSoundhookUrl();
-    window.open(soundhook_url);
-  });
+  if(share_sh){
+    share_sh.addEventListener('click',function(){
+      var soundhook_url = createSoundhookUrl();
+      window.open(soundhook_url);
+    });
+  }
   // }}}
 })();
 

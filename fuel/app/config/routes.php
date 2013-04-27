@@ -8,5 +8,7 @@ return array(
   'anime/:id/like'   => 'api/anime/like',
   'anime/:id/unlike' => 'api/anime/unlike',
   'anime/:id/reject(/:vhash)?' => 'api/anime/reject',
+
+  'login' => 'login/index',
 	//'hello(/:name)?'   => array('top/hello', 'name' => 'hello'),
 );

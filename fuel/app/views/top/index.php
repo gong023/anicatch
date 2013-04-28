@@ -9,6 +9,7 @@
   <meta property="og:description" content="アニメを見る暇が無いのなら、オープニングだけ聞けばいいじゃない">
 	<?php echo Asset::css('bootstrap.css'); ?>
 	<?php echo Asset::css('common.css'); ?>
+	<?php echo Asset::css('top.css'); ?>
 	<?php echo Asset::js('effect.js'); ?>
 	<?php echo Asset::js('top.js'); ?>
 	<?php echo Asset::js('social.js'); ?>
@@ -27,7 +28,7 @@
 	<div id="header">
 		<div class="row">
 			<div id="logo">
-        <h1>あにきゃっち.net <small><i> - closed β - </i></small></h1>
+        <h1><a tabindex='1' href="/" class="logo">あにきゃっち.net</a><small><i> - open β - </i></small></h1>
       </div>
 		</div>
 	</div>

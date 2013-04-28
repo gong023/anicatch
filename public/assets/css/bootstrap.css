@@ -4923,6 +4923,8 @@ a.badge:hover {
   -webkit-border-radius: 6px;
      -moz-border-radius: 6px;
           border-radius: 6px;
+  position: relative;
+  overflow: hidden;
 }
 
 .hero-unit h1 {

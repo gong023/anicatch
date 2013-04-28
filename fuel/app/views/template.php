@@ -63,14 +63,16 @@
 		</div>
 		<hr/>
 		<footer>
-			<p class="pull-right">
-        <div class="fb-like pull-right" data-href="http://anicatch.net" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-font="arial"></div>
-        <div style="clear:both" class="pull-right">Powered by <a href="http://fuelphp.com">FuelPHP</a> : released under the MIT license.</div>
-      </p>
-			<p>
-				<small>All right reserved. Copyright otiai10</small><br>
-				<small>苦情・お問い合わせ : <a href="https://twitter.com/otiai10">@otiai10</a></small>
-			</p>
+      <div class="pull-left">
+        <div class="fb-like pull-left" data-href="http://anicatch.net" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-font="arial"></div>
+        <div style="clear:both" class="pull-left">Powered by <a href="http://fuelphp.com">FuelPHP</a> : released under the MIT license.</div>
+      </div>
+      <div class="pull-right">
+        <p>
+          <small class="pull-right">All right reserved. Copyright otiai10</small><br>
+          <small class="pull-right">苦情・お問い合わせ : <a href="https://twitter.com/otiai10">@otiai10</a></small>
+        </p>
+      </div>
 		</footer>
 	</div>
   <div id="age-face-hidden">(☝ ՞ω ՞)☝</div>

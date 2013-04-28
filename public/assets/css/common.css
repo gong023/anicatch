@@ -89,6 +89,10 @@ blockquote>small>a:hover {
   text-decoration: none;
 }
 
+small.more {
+  font-size: 0.1em;
+}
+
 tr.nowplaying {
   font-weight: bold;
   background-color: #eee;

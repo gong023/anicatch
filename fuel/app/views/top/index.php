@@ -40,8 +40,11 @@
       </div>
       <hr class="styling margined">
       <div class="pull-right">
-        <small>アニメを見る暇が無いのなら、オープニングだけ聞けばいいじゃない</small>
+        <small>
+          アニメを見る暇が無いのなら、オープニングだけ聞けばいいじゃない<br>
+        </small>
         <p><a class="replace-loader btn btn-primary btn-large pull-right" href="/stream">Streaming ></a></p>
+        <small class="more pull-right">※ アニメタイトルから、特定アニメだけのストリーミングも可能です</small>
       </div>
       <hr class="styling">
 		</div>

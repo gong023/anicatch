@@ -26,6 +26,8 @@ function init(){
   registControleBtns();
   registReplaceBtns();
   registAjaxBtns();
+  registInputReaction();
+  showOptionURL();
 }
 
 function registControleBtns(){

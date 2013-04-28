@@ -35,10 +35,15 @@ class Controller_Stream extends Controller_Template
       }
     }
 
+    $isAllowAll = (Input::get('allow') == 'all') ? true : false;
+    $v = Input::get('v');
     $this->template->content = View::forge('stream/index');
     $this->template->content->animes        = $this->_checkNew($animes);
     $this->template->content->page          = $page;
     $this->template->content->get_parameter = $this->generateGetParameter();
+    $this->template->content->start_v_id    = Input::get('v');
+    $this->template->content->q             = Input::get('q');
+    $this->template->content->isAllowAll    = $isAllowAll;
     $this->template->content->isSoundCloud  = $soundcloud;
     $this->template->soundcloud             = $soundcloud;
   }
@@ -72,11 +77,14 @@ class Controller_Stream extends Controller_Template
       }
     }
 
-
+    $isAllowAll = (Input::get('allow') == 'all') ? true : false;
     $this->template->content = View::forge('stream/index');
     $this->template->content->animes        = $this->_checkNew($animes);
     $this->template->content->get_parameter = $this->generateGetParameter();
+    $this->template->content->start_v_id    = Input::get('v');
     $this->template->content->isSoundCloud  = $soundcloud;
+    $this->template->content->isAllowAll    = $isAllowAll;
+    $this->template->content->q             = Input::get('q');
     $this->template->soundcloud             = $soundcloud;
   }
 

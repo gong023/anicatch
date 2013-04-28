@@ -388,6 +388,7 @@ a:hover {
   margin-right: auto;
   margin-left: auto;
   *zoom: 1;
+  padding-bottom: 20px;
 }
 
 .container:before,
@@ -4923,6 +4924,8 @@ a.badge:hover {
   -webkit-border-radius: 6px;
      -moz-border-radius: 6px;
           border-radius: 6px;
+  position: relative;
+  overflow: hidden;
 }
 
 .hero-unit h1 {

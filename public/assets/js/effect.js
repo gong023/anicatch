@@ -27,7 +27,7 @@ function sageAction(callback){
 
 function rejectAction(callback){
   var dom = document.getElementById('reject-face-hidden');
-  _FlowAnimation(dom, '2000px', '-1000px', 800, callback);
+  _FlowAnimation(dom, '2000px', '-2000px', 800, callback);
 }
 
 function _SlideAnimation(dom, start, dest, duration, cb){

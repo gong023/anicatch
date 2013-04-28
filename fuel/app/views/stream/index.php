@@ -52,7 +52,7 @@
     <?php if(isset($page)){ ?>
       <div class="pull-right"><a class="replace-loader" href="/stream/<?php echo $page + 1; echo '/' . $get_parameter; ?>">next page</a></div>
     <?php } ?>
-    <h2>playlist</h2>
+    <h2>Playlist</h2>
 		<table class="table">
       <?php for($i=0; $i<count($animes); $i++){
         echo '<tr id="index_'.$i.'" class="animetr"><td><a class="black" href="/anime/'.$animes[$i]['id'].'/stream'.$get_parameter.'">'. $animes[$i]['title'] .'</td>';
@@ -68,9 +68,44 @@
 		</table>
 	</div>
 	<div class="span4">
-		<h2>comments</h2>
+		<h2>Options</h2>
+    <form id="option">
 		<table class="table">
-      <tr><td>piyo</td></tr>
+      <tr>
+        <th>sound</th>
+        <td><input id="opt-src-youtube" class="option src-selector" type="radio" name="src" value="youtube" <?php if(!$isSoundCloud){ echo 'checked'; } ?>>YouTube</td>
+        <td><input id="opt-src-soundcloud" class="option src-selector" type="radio" name="src" value="soundcloud"  <?php if($isSoundCloud){ echo 'checked'; } ?>>SoundCloud</td>
+      </tr>
+      <tr>
+        <th>filter</th>
+        <td><input id="opt-allow-no" class="option allow-selector" type="radio" name="allow" value="" <?php if(!$isAllowAll){ echo 'checked'; } ?>>On</td>
+        <td><input id="opt-allow-all" class="option allow-selector" type="radio" name="allow" value="all"<?php if($isAllowAll){ echo 'checked'; } ?>>Off</td>
+      </tr>
+      <tr>
+        <th>query</th>
+        <td colspan="2">
+          <input id="opt-q" class="option opt-text q-selector" type="text" name="q" placeholder="additional query" value="<? if($q){ echo $q; }else{ echo 'OP'; }?>"/>
+        </td>
+      </tr>
+      <tr>
+        <th>start</th>
+        <td colspan="2">
+          <input id="opt-v" class="option opt-text v-selector" type="text" name="v" placeholder="start video id" value=<?php if($start_v_id){ echo '"'.$start_v_id.'"'; }else{ ?>"" disabled<?php } ?>/>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3">
+          <pre id="option-parameters">?src=soundcloud&q=REMIX&allow=all</pre>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td>
+          <a id="btn-reload" href="" class="replace-loader btn btn-primary pull-right">Reload</a>
+        </td>
+      </tr>
 		</table>
+    </form>
 	</div>
 </div>

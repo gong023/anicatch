@@ -1,0 +1,9 @@
+div#logo {
+  background-image: url('http://anicatch.net/assets/img/square.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+div#logo:hover {
+  background-image: url('');
+}

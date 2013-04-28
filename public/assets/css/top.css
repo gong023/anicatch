@@ -1,0 +1,5 @@
+div.hero-unit {
+  background-image: url('http://anicatch.net/assets/img/anicatch_big.png');
+  background-repeat: no-repeat;
+  background-position: 500px -200px;
+}

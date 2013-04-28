@@ -9,6 +9,7 @@
   <meta property="og:description" content="アニメを見る暇が無いのなら、オープニングだけ聞けばいいじゃない">
 	<?php echo Asset::css('bootstrap.css'); ?>
 	<?php echo Asset::css('common.css'); ?>
+	<?php echo Asset::css('top.css'); ?>
 	<?php echo Asset::js('effect.js'); ?>
 	<?php echo Asset::js('top.js'); ?>
 	<?php echo Asset::js('social.js'); ?>
@@ -27,7 +28,7 @@
 	<div id="header">
 		<div class="row">
 			<div id="logo">
-        <h1>あにきゃっち.net <small><i> - closed β - </i></small></h1>
+        <h1><a tabindex='1' href="/" class="logo">あにきゃっち.net</a><small><i> - open β - </i></small></h1>
       </div>
 		</div>
 	</div>
@@ -39,8 +40,11 @@
       </div>
       <hr class="styling margined">
       <div class="pull-right">
-        <small>アニメを見る暇が無いのなら、オープニングだけ聞けばいいじゃない</small>
+        <small>
+          アニメを見る暇が無いのなら、オープニングだけ聞けばいいじゃない<br>
+        </small>
         <p><a class="replace-loader btn btn-primary btn-large pull-right" href="/stream">Streaming ></a></p>
+        <small class="more pull-right">※ アニメタイトルから、特定アニメだけのストリーミングも可能です</small>
       </div>
       <hr class="styling">
 		</div>
@@ -90,14 +94,16 @@
 		</div>
 		<hr/>
 		<footer>
-			<p class="pull-right">
-        <!-- Page rendered in {exec_time}s using {mem_usage}mb of memory. -->
-        <div class="fb-like pull-right" data-href="http://anicatch.net" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-font="arial"></div>
-      </p>
-			<p>
-				<a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.<br>
-				<small>about this site, All right reserved. Copyright otiai10<!--Version: <?php echo Fuel::VERSION; ?>--></small>
-			</p>
+			<div class="pull-left">
+        <div class="fb-like pull-left" data-href="http://anicatch.net" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-font="arial"></div>
+        <div style="clear:both" class="pull-left">Powered by <a href="http://fuelphp.com">FuelPHP</a> : released under the MIT license.</div>
+      </div>
+      <div class="pull-right">
+        <p>
+          <small class="pull-right">All right reserved. Copyright otiai10</small><br>
+          <small class="pull-right">苦情・お問い合わせ : <a href="https://twitter.com/otiai10">@otiai10</a></small>
+        </p>
+      </div>
 		</footer>
 	</div>
 </body>

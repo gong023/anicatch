@@ -261,3 +261,7 @@ div#share-sh>span {
 a.black {
   color: black;
 }
+
+footer {
+  margin-bottom: 30px;
+}

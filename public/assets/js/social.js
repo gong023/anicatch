@@ -71,26 +71,28 @@ function registInputReaction(){
   var inputs = document.getElementsByTagName('input');
   for(var i=0;i<inputs.length; i++){
     inputs[i].addEventListener('change', function(){
-      refrechInputValues();
+      var params = collectInputCurrentParams();
+      refreshInputValuesDisplay(params);
+      refreshReloadButton(params);
     });
   }
   var input_type_text = document.getElementsByClassName('opt-text');
   for(var i=0;i<input_type_text.length; i++){
     input_type_text[i].addEventListener('keyup',function(){
       var params = collectInputCurrentParams();
-      refrechInputValuesDisplay(params);
-      refrechReloadButton(params);
+      refreshInputValuesDisplay(params);
+      refreshReloadButton(params);
     });
   }
 }
 
-function refrechInputValuesDisplay(params){
+function refreshInputValuesDisplay(params){
   var html = paramsStringify(params);
   var pre = document.getElementById('option-parameters');
   pre.innerHTML = html;
 }
 
-function refrechReloadButton(params){
+function refreshReloadButton(params){
   var btn = document.getElementById('btn-reload');
   btn.setAttribute('href', paramsStringify(params));
 }

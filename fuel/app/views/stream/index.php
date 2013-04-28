@@ -68,7 +68,7 @@
 		</table>
 	</div>
 	<div class="span4">
-		<h2>Option</h2>
+		<h2>Options</h2>
     <form id="option">
 		<table class="table">
       <tr>
@@ -102,7 +102,7 @@
         <td></td>
         <td></td>
         <td>
-          <a id="btn-reload" href="" class="btn btn-primary pull-right">Reload</a>
+          <a id="btn-reload" href="" class="replace-loader btn btn-primary pull-right">Reload</a>
         </td>
       </tr>
 		</table>

@@ -21,6 +21,7 @@ function init(){
   initPlayer(__playlist[__index]['hash']);
   displayInfo();
   registControleBtns();
+  registReplaceBtns();
   registAjaxBtns();
   registInputReaction();
   showOptionURL();

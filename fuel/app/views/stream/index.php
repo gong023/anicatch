@@ -84,7 +84,7 @@
       <tr>
         <th>query</th>
         <td colspan="2">
-          <input id="opt-q" class="option opt-text q-selector" type="text" name="q" placeholder="additional query" value="<? if($q){ echo $q; }else{ echo 'OP'; }?>"/>
+          <input id="opt-q" class="option opt-text q-selector" type="text" name="q" placeholder="additional query" value="<? if($q){ echo $q; }else if($isSoundCloud){ echo ''; }else{ echo 'OP'; }?>"/>
         </td>
       </tr>
       <tr>

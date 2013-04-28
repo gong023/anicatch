@@ -23,29 +23,89 @@ window.fbAsyncInit = function() {
 };
 
 function generateGetParameterForShare(){
+  // over write
+  params = parseLocatinGetParameter();
+  params['v'] = __playlist[__index]['hash']; 
+  return paramsStringify(params);
+}
+
+function parseLocatinGetParameter(){
   var elms = window.location.search.split(/[\?\&=]/);
   elms.shift();
   var i = 0;
-  var queries = {};
+  var params = {};
   while(true){
     if(elms[i] == void 0){
       break;
     }
     var key = elms[i];
     var val = elms[i+1];
-    queries[key] = val;
+    params[key] = val;
     i = i + 2;
   }
-  // over write
-  queries['v'] = __playlist[__index]['hash']; 
+  return params;
+}
+
+function paramsStringify(params){
   var get_parameter_str = '';
   var first = true;
-  for(var i in queries){
+  for(var i in params){
     var sep = (first==true) ? '?' : '&';
-    get_parameter_str += (sep + i + '=' + queries[i]);
+    get_parameter_str += (sep + i + '=' + params[i]);
     first = false;
   }
   return get_parameter_str;
+}
+
+/***
+  * OPTION
+***/
+function showOptionURL(){
+  var params = parseLocatinGetParameter();
+  var pre = document.getElementById('option-parameters');
+  var html = paramsStringify(params);
+  pre.innerHTML = html;
+}
+
+function registInputReaction(){
+  var inputs = document.getElementsByTagName('input');
+  for(var i=0;i<inputs.length; i++){
+    inputs[i].addEventListener('change', function(){
+      refrechInputValues();
+    });
+  }
+  var input_type_text = document.getElementsByClassName('opt-text');
+  for(var i=0;i<input_type_text.length; i++){
+    input_type_text[i].addEventListener('keyup',function(){
+      var params = collectInputCurrentParams();
+      refrechInputValuesDisplay(params);
+      refrechReloadButton(params);
+    });
+  }
+}
+
+function refrechInputValuesDisplay(params){
+  var html = paramsStringify(params);
+  var pre = document.getElementById('option-parameters');
+  pre.innerHTML = html;
+}
+
+function refrechReloadButton(params){
+  var btn = document.getElementById('btn-reload');
+  btn.setAttribute('href', paramsStringify(params));
+}
+
+function collectInputCurrentParams(){
+  var params = {
+    src   : document.forms["option"].elements['src'].value,
+  }
+  var allow = document.forms["option"].elements['allow'].value;
+  if(allow) params.allow = allow;
+  var q = document.forms["option"].elements['q'].value;
+  if(q) params.q = q;
+  var v = document.forms["option"].elements['v'].value;
+  if(v) params.v = v;
+  return params;
 }
 
 function generateOriginalURL(){

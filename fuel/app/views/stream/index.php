@@ -107,5 +107,14 @@
       </tr>
 		</table>
     </form>
+    <h2>Musics</h2>
+    <div>
+      <table class="table">
+        <tr>
+          <SCRIPT charset="utf-8" type="text/javascript" src="http://ws.amazon.co.jp/widgets/q?ServiceVersion=20070822&MarketPlace=JP&ID=V20070822/JP/otiai10-22/8006/842ccf03-defe-483d-a877-4067bac259d4"> </SCRIPT>
+          <NOSCRIPT><A HREF="http://ws.amazon.co.jp/widgets/q?ServiceVersion=20070822&MarketPlace=JP&ID=V20070822%2FJP%2Fotiai10-22%2F8006%2F842ccf03-defe-483d-a877-4067bac259d4&Operation=NoScript">Amazon.co.jp ウィジェット</A></NOSCRIPT>
+        </tr>
+      </table>
+    </div>
 	</div>
 </div>

@@ -183,7 +183,10 @@ class Controller_Stream extends Controller_Template
   {
     foreach($list as $k => $info){
 
-      if(Input::get('allow') !== 'all' && $this->_checkUTATTEMITA($info)){
+      if(
+        Input::get('allow') != 'all' &&
+        $this->_checkUTATTEMITA($info)
+      ){
         continue;
       }
 

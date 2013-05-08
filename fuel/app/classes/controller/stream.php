@@ -17,7 +17,7 @@ class Controller_Stream extends Controller_Template
     $animes = array();
     foreach($list as $k => $anime){
       $video_info = array();
-      if(Input::get('src') === 'soundcloud'){
+      if($this->cleanGet(Input::get('src')) === 'soundcloud'){
         $soundcloud = true;
         $video_info = $this->_getVideoFromSoundCloud($anime['title']);
       }else{
@@ -91,13 +91,13 @@ class Controller_Stream extends Controller_Template
   private function generateGetParameter()
   {
     $_params = array();
-    $_q = Input::get('q');
+    $_q = $this->cleanGet(Input::get('q'));
     if(!empty($_q)){
       $_params['q'] = $_q;
     }
     switch(Input::get('src')){
       case  'soundcloud':
-        $_params['src'] = Input::get('src');
+        $_params['src'] = $this->cleanGet(Input::get('src'));
         break;
       default:
         // do nothing
@@ -112,6 +112,7 @@ class Controller_Stream extends Controller_Template
         $parameter_string .= '&';
       }
       $parameter_string .= $key . '=' . $val;
+      $_i = 1;
     }
     return $parameter_string;
   }
@@ -121,7 +122,7 @@ class Controller_Stream extends Controller_Template
     $q = 'OP';
     $_q = Input::get('q');
     if(!empty($_q)){
-      $q = $_q;
+      $q = $this->cleanGet($_q);
     }
 
     $url = 'http://gdata.youtube.com/feeds/api/videos';
@@ -182,7 +183,10 @@ class Controller_Stream extends Controller_Template
   {
     foreach($list as $k => $info){
 
-      if(Input::get('allow') !== 'all' && $this->_checkUTATTEMITA($info)){
+      if(
+        Input::get('allow') != 'all' &&
+        $this->_checkUTATTEMITA($info)
+      ){
         continue;
       }
 
@@ -210,6 +214,7 @@ class Controller_Stream extends Controller_Template
   private function _getVideoFromSoundCloud($anime_title, $is_anime_permalink=false)
   {
     $q = Input::get('q');
+    $q = $this->cleanGet($q);
 
     $url = 'http://api.soundcloud.com/tracks.json?client_id=9ec24de791694f759c44ca0cf9f560de';
     if($is_anime_permalink){
@@ -218,7 +223,7 @@ class Controller_Stream extends Controller_Template
       $url .= '&limit='.'6';
       //$url .= '&limit='.'1';
     }
-    $url .= '&genres='.'Anime';
+    //$url .= '&genres='.'Anime';
     $url .= '&q='.urlencode($anime_title . ' ' . $q);
 
     require_once 'HTTP/Request2.php';
@@ -250,4 +255,15 @@ class Controller_Stream extends Controller_Template
     return $return;
     // }}}
   }
+
+  // {{{
+  function cleanGet($get)
+  {
+    // ?src=soundcloud?q=OP
+    // ?q=OP?src=soundcloud
+    // このケースを排除
+    $elms = explode('?',$get);
+    return array_shift($elms);
+  }
+  // }}}
 }

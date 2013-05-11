@@ -2,6 +2,13 @@
 
 class Controller_Stream extends Controller_Template
 {
+  private $src     = '';
+  private $query   = '';
+  private $filter  = '';
+  private $start_v = '';
+
+  private $limit   = 20;
+
   public function action_index()
   {
     $limit = 20;
@@ -48,8 +55,55 @@ class Controller_Stream extends Controller_Template
     $this->template->soundcloud             = $soundcloud;
   }
 
+  /*
+   * @return : アニメタイトルと、ビデオのハッシュを含んだ単純配列
+   * アニメパーマなのか、ストリームなのかを判断してdispatchする
+  **/
+  private function _generateVideoList(){
+
+  }
+
+  /*
+   * @return : ストリームなリストを返す
+  **/
+  private function _buildStreamList(){
+    $anime_list = array();
+    foreach($anime_list as $anime){
+      // getVideoInfo()
+    }
+  }
+
+  /*
+   * @return : アニメパーマなリストを返す
+  **/
+  private function _buildAnimepermaList(){
+
+  }
+
+  /*
+   * @retunr : リソースを判定してカウント分だけvideoInfosを返す
+  **/
+  private function _getVideoInfosFromResource()
+  {
+
+  }
+
   public function action_anime()
   {
+    //***** ここは疑似コード *****
+
+    // srcを確定する
+
+    // queryを確定する
+
+    // filterを確定する
+
+    // startを取得する
+
+    // リストを作る
+
+    //****************************
+
     $limit = 20;
     $anime_id = $this->param('id');
     if(empty($anime_id) || $anime_id < 0 || !is_numeric($anime_id)){

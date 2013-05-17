@@ -25,10 +25,10 @@
         <small><a id="video-url" target="_blank">fuga</a></small>
         <div id="share">
           <div id="share-fb">
-            <img src="http://anicatch.net/assets/img/share_fb.png">
+            <img not_amzn="true" src="http://anicatch.net/assets/img/share_fb.png">
           </div>
           <div id="share-tw">
-            <img src="http://anicatch.net/assets/img/share_tw.png">
+            <img not_amzn="true" src="http://anicatch.net/assets/img/share_tw.png">
           </div>
           <?php if(!$isSoundCloud){ ?>
             <div id="share-sh">
@@ -55,8 +55,13 @@
     <h2>Playlist</h2>
 		<table class="table">
       <?php for($i=0; $i<count($animes); $i++){
-        echo '<tr id="index_'.$i.'" class="animetr"><td><a class="black" href="/anime/'.$animes[$i]['id'].'/stream'.$get_parameter.'">'. $animes[$i]['title'] .'</td>';
-        echo '<td><a tabindex="1" class="anime play-direct" seq="'.$i.'" anime-id="'.$animes[$i]['id'].'" hash="'.$animes[$i]['hash'].'" atitle="'.$animes[$i]['title'].'" aurl="' .$animes[$i]['url'].'">'.$animes[$i]['vtitle'] . '</a></td></tr>';
+        echo '<tr id="index_'.$i.'" class="animetr"><td>';
+        echo '<a class="black" href="/anime/'.$animes[$i]['id'].'/stream'.$get_parameter.'">';
+        echo '<span class="caret"></span>         ';
+        echo $animes[$i]['title'];
+        echo  '</td>';
+        echo '<td>';
+        echo '<a tabindex="1" class="anime play-direct" seq="'.$i.'" anime-id="'.$animes[$i]['id'].'" hash="'.$animes[$i]['hash'].'" atitle="'.$animes[$i]['title'].'" aurl="' .$animes[$i]['url'].'">'.$animes[$i]['vtitle'] . '</a></td></tr>';
       } ?>
       <tr><td colspan="2" style="text-align:center">
       <?php if(isset($page)){ ?>
@@ -111,8 +116,11 @@
     <div>
       <table class="table">
         <tr>
+          <SCRIPT charset="utf-8" type="text/javascript" src="http://ws.amazon.co.jp/widgets/q?rt=tf_sw&ServiceVersion=20070822&MarketPlace=JP&ID=V20070822/JP/otiai10-22/8002/1853494e-b62f-4dd2-9d63-0b8a0724f60c"> </SCRIPT> <NOSCRIPT><A HREF="http://ws.amazon.co.jp/widgets/q?rt=tf_sw&ServiceVersion=20070822&MarketPlace=JP&ID=V20070822%2FJP%2Fotiai10-22%2F8002%2F1853494e-b62f-4dd2-9d63-0b8a0724f60c&Operation=NoScript">Amazon.co.jp ウィジェット</A></NOSCRIPT>
+<!--
           <SCRIPT charset="utf-8" type="text/javascript" src="http://ws.amazon.co.jp/widgets/q?ServiceVersion=20070822&MarketPlace=JP&ID=V20070822/JP/otiai10-22/8006/842ccf03-defe-483d-a877-4067bac259d4"> </SCRIPT>
           <NOSCRIPT><A HREF="http://ws.amazon.co.jp/widgets/q?ServiceVersion=20070822&MarketPlace=JP&ID=V20070822%2FJP%2Fotiai10-22%2F8006%2F842ccf03-defe-483d-a877-4067bac259d4&Operation=NoScript">Amazon.co.jp ウィジェット</A></NOSCRIPT>
+-->
         </tr>
       </table>
     </div>

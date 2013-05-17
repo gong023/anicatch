@@ -162,3 +162,14 @@ function createSoundhookUrl(){
   var music = __playlist[__index];
   return 'http://soundhook.net/search?qu=' + music.hash + '&from=anicatch'; 
 }
+
+setInterval(function(){
+},3000);
+
+function refreshAmazon(atitle){
+  var amzn_search_textfield = document.getElementById('amzn_search_textfield');
+  amzn_search_textfield.value = atitle;
+  var frm = document.getElementById('searchBoxForm');
+  window.nextCallBack["JP"][8002][0].goOnClick("JP",0);
+  return false;
+}

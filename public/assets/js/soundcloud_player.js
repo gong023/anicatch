@@ -25,6 +25,7 @@ function init(){
   registAjaxBtns();
   registInputReaction();
   showOptionURL();
+  refreshAmazon(__playlist[__index]['atitle']);
 }
 
 function registControleBtns(){
@@ -204,6 +205,7 @@ function _playThis(){
     __player.play();
   }});
   displayInfo();
+  refreshAmazon(__playlist[__index]['atitle']);
 }
 
 function removeClass(el, c) {

@@ -7,3 +7,20 @@ div#logo {
 div#logo:hover {
   background-image: url('');
 }
+
+div.amzn_wdgt div {
+  width: 300px;
+}
+
+div.amzn_wdgt * a {
+  font-weight: bold;
+  font-size:  1.2em;
+}
+
+span.caret {
+  margin-top: 0.4em;
+  opacity: 0.1;
+}
+a:hover > span {
+  opacity: 1;
+}

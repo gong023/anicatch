@@ -98,3 +98,37 @@ function _extrPX(pixelString){
   return parseInt(pixelString.replace('px',''));
 }
 
+function modifyAmazonCSS(){
+  setTimeout(function(){
+    var wdgt_tls = document.getElementsByClassName('wdgt_tl');
+    for(var i=0; i<wdgt_tls.length; i++){
+      wdgt_tls[i].setAttribute('style','height:71px;width:100%');
+    }
+    // img container
+    var asin_imgs = document.getElementsByClassName('asin_img');
+    for(var i=0; i<asin_imgs.length; i++){
+      asin_imgs[i].setAttribute('style','height:60px;width:60px;');
+    }
+    // img
+    var imgs = document.getElementsByTagName('img');
+    for(var i=0; i<imgs.length; i++){
+      console.log(imgs[i]);
+      if(
+        imgs[i].getAttribute('not_amzn')
+        || imgs[i].getAttribute('alt') == 'Amazon.co.jp'
+      ){
+        // do nothing
+      }else{
+        imgs[i].setAttribute('height','60px');
+        imgs[i].setAttribute('width','60px');
+      }
+    }
+    // td container
+    var all_tds = document.getElementsByTagName('td');
+    for(var i=0; i<all_tds.length; i++){
+      if(all_tds[i].getAttribute('style') == "background-color:#D5D5D5"){
+        all_tds[i].setAttribute('style', "background-color:#efefef");
+      }
+    }
+  },1000);
+}

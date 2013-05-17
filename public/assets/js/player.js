@@ -28,6 +28,10 @@ function init(){
   registAjaxBtns();
   registInputReaction();
   showOptionURL();
+  setTimeout(function(){
+    refreshAmazon(__playlist[__index]['atitle']);
+  },400);
+  modifyAmazonCSS();
 }
 
 function registControleBtns(){
@@ -258,6 +262,8 @@ function play(){
 function _playThis(){
   __player.loadVideoById(__playlist[__index]['hash']);
   displayInfo();
+  refreshAmazon(__playlist[__index]['atitle']);
+  modifyAmazonCSS();
 }
 
 function removeClass(el, c) {

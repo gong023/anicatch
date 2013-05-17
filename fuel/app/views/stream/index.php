@@ -73,7 +73,20 @@
 		</table>
 	</div>
 	<div class="span4">
-		<h2>Options</h2>
+
+    <!-- Musics -->
+    <h2>Musics</h2>
+    <div>
+      <table class="table">
+        <tr>
+          <SCRIPT charset="utf-8" type="text/javascript" src="http://ws.amazon.co.jp/widgets/q?rt=tf_sw&ServiceVersion=20070822&MarketPlace=JP&ID=V20070822/JP/otiai10-22/8002/1853494e-b62f-4dd2-9d63-0b8a0724f60c"> </SCRIPT> <NOSCRIPT><A HREF="http://ws.amazon.co.jp/widgets/q?rt=tf_sw&ServiceVersion=20070822&MarketPlace=JP&ID=V20070822%2FJP%2Fotiai10-22%2F8002%2F1853494e-b62f-4dd2-9d63-0b8a0724f60c&Operation=NoScript">Amazon.co.jp ウィジェット</A></NOSCRIPT>
+        </tr>
+      </table>
+    </div>
+    <!-- /Musics -->
+
+    <!-- Options -->
+		<h2>Playlist Options</h2>
     <form id="option">
 		<table class="table">
       <tr>
@@ -112,17 +125,6 @@
       </tr>
 		</table>
     </form>
-    <h2>Musics</h2>
-    <div>
-      <table class="table">
-        <tr>
-          <SCRIPT charset="utf-8" type="text/javascript" src="http://ws.amazon.co.jp/widgets/q?rt=tf_sw&ServiceVersion=20070822&MarketPlace=JP&ID=V20070822/JP/otiai10-22/8002/1853494e-b62f-4dd2-9d63-0b8a0724f60c"> </SCRIPT> <NOSCRIPT><A HREF="http://ws.amazon.co.jp/widgets/q?rt=tf_sw&ServiceVersion=20070822&MarketPlace=JP&ID=V20070822%2FJP%2Fotiai10-22%2F8002%2F1853494e-b62f-4dd2-9d63-0b8a0724f60c&Operation=NoScript">Amazon.co.jp ウィジェット</A></NOSCRIPT>
-<!--
-          <SCRIPT charset="utf-8" type="text/javascript" src="http://ws.amazon.co.jp/widgets/q?ServiceVersion=20070822&MarketPlace=JP&ID=V20070822/JP/otiai10-22/8006/842ccf03-defe-483d-a877-4067bac259d4"> </SCRIPT>
-          <NOSCRIPT><A HREF="http://ws.amazon.co.jp/widgets/q?ServiceVersion=20070822&MarketPlace=JP&ID=V20070822%2FJP%2Fotiai10-22%2F8006%2F842ccf03-defe-483d-a877-4067bac259d4&Operation=NoScript">Amazon.co.jp ウィジェット</A></NOSCRIPT>
--->
-        </tr>
-      </table>
-    </div>
+    <!-- /Options -->
 	</div>
 </div>

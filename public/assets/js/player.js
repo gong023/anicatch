@@ -86,7 +86,7 @@ function initPlayer(initialID){
     "http://www.youtube.com/v/" + initialID + "?enablejsapi=1&playerapiid=ytplayer", 
     "video",
     "460",
-    "360",
+    "320",
     "8",
     null,
     null,
